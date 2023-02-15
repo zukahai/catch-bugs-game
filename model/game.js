@@ -18,7 +18,10 @@ class game {
         this.context = this.canvas.getContext("2d");
         document.body.appendChild(this.canvas);
 
+
         this.render();
+        this.chessBoard = new ChessBoard(this);
+        this.chessBoard.draw();
         this.loop();
         this.listenMouse();
     }
@@ -36,8 +39,8 @@ class game {
 
 
     draw() {
-        this.clearScreen()
-
+        this.clearScreen();
+        this.chessBoard.draw();
     }
 
     clearScreen() {
