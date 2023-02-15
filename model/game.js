@@ -1,9 +1,9 @@
 game_W = 0, game_H = 0;
 
 let bg = new Image();
-bg.src = "images/bg.png";
+bg.src = "assets/images/bg.png";
 let logo = new Image();
-logo.src = "images/logo.png";
+logo.src = "assets/images/logo.png";
 let fl = new Image();
 
 class game {
