@@ -5,9 +5,12 @@ class ChessBoard {
     constructor(game) {
         this.game = game;
         console.log(game_W);
+        this.size = game_H / 8;
+        this.x = (game_W - 4 * this.size) / 2;
+        this.y = (game_H - 4 * this.size) / 2;
     }
 
     draw() {
-        this.game.context.drawImage(chessBoard_image, 600, 300, 300, 300);
+        this.game.context.drawImage(chessBoard_image, this.x, this.y, this.size * 4, this.size * 4);
     }
 }
