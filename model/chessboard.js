@@ -6,12 +6,14 @@ chessBoard_bg_image.src = "assets/images/chessboards/chessboard_bg.png";
 
 N = 4
 N_bug = 6
+N_flashlight = 6
 
 
 class ChessBoard {
     constructor(game) {
         this.game = game;
         this.bugs = [];
+        this.flashlights = [];
         this.size = game_H / 8;
 
         this.x = (game_W - 4 * this.size) / 2;
@@ -19,6 +21,7 @@ class ChessBoard {
 
         this.initMatrix();
         this.initBug();
+        this.initFlashlight();
     }
 
     initMatrix() {
@@ -47,11 +50,34 @@ class ChessBoard {
 
     }
 
+    initFlashlight() {
+        let m_n = [
+            [2, 2],
+            [2, 2],
+            [2, 2],
+            [2, 2],
+            [1, 2],
+            [1, 2]
+        ]
+        for (let i = 0; i < N_flashlight; i++)
+            this.flashlights[i] = new Flashlight(this.game, m_n[i][0], m_n[i][1], this.size, i);
+    }
+
+    drawBug() {
+        for (let i = 0; i < this.bugs.length; i++)
+            this.bugs[i].draw();
+    }
+
+    drawFlashlight() {
+        for (let i = 0; i < N_flashlight; i++)
+            this.flashlights[i].draw();
+    }
+
     draw() {
         let size_2 = this.size / 2;
         this.game.context.drawImage(chessBoard_image, this.x, this.y, this.size * 4, this.size * 4);
-        for (let i = 0; i < this.bugs.length; i++)
-            this.bugs[i].draw();
+        this.drawBug();
+        this.drawFlashlight();
         this.game.context.drawImage(chessBoard_bg_image, this.x - size_2 / 2, this.y - size_2 / 2, this.size * 4 + size_2, this.size * 4 + size_2);
     }
 }
