@@ -1,8 +1,8 @@
 let chessBoard_image = new Image();
-chessBoard_image.src = "assets/images/chessboard/chessboard.png";
+chessBoard_image.src = "assets/images/chessboards/chessboard.png";
 
 let chessBoard_bg_image = new Image();
-chessBoard_bg_image.src = "assets/images/chessboard/chessboard_bg.png";
+chessBoard_bg_image.src = "assets/images/chessboards/chessboard_bg.png";
 
 
 class ChessBoard {
