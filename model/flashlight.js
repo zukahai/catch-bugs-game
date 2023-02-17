@@ -9,9 +9,10 @@ class Flashlight {
         this.angle = 0;
 
         this.initXY();
+        this.asy = 2;
 
         this.bug_image = new Image();
-        this.bug_image.src = "assets/images/flashlights/" + (index_flashlight + 1) + ".png";
+        this.bug_image.src = "assets/images/flashlights/" + (index_flashlight + 1) + "_" + this.asy + ".png";
         console.log("init flashlight");
     }
 
