@@ -87,11 +87,17 @@ class game {
             if (move == true) {
                 move = false;
                 this.chessBoard.updateLocationFlashlight(index_flashlight);
+                console.log(this.chessBoard.block);
             } else {
                 for (let i = 0; i < this.chessBoard.flashlights.length; i++)
                     if (this.chessBoard.flashlights[i].isClick(x, y)) {
-                        this.chessBoard.flashlights[i].rotate_90();
-                        console.log(this.chessBoard.flashlights[i].block);
+                        if (x > this.chessBoard.x && x < this.chessBoard.x + this.chessBoard.size * 4) {
+                            this.chessBoard.flashlights[i].resetLacation();
+                        } else {
+                            this.chessBoard.flashlights[i].rotate_90();
+                        }
+                        // console.log(this.chessBoard.flashlights[i].block);
+                        console.log(this.chessBoard.block);
                     }
             }
             click = false;
