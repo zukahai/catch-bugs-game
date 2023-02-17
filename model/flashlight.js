@@ -43,6 +43,11 @@ class Flashlight {
             this.asy = 1 - this.asy;
     }
 
+    updateLocation(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+
     draw() {
         this.game.context.save();
         this.game.context.translate(this.x + this.size, this.y + this.size);

@@ -6,6 +6,10 @@ let logo = new Image();
 logo.src = "assets/images/logo.png";
 let fl = new Image();
 
+let move = false;
+let click = false;
+let index_flashlight = -1;
+
 class game {
     constructor() {
         this.canvas = null;
@@ -56,22 +60,41 @@ class game {
         document.addEventListener("mousedown", evt => {
             var x = evt.offsetX == undefined ? evt.layerX : evt.offsetX;
             var y = evt.offsetY == undefined ? evt.layerY : evt.offsetY;
+            for (let i = 0; i < this.chessBoard.flashlights.length; i++)
+                if (this.chessBoard.flashlights[i].isClick(x, y)) {
+                    console.log("Down " + i);
+                    click = true;
+                    index_flashlight = i;
+                }
 
         })
 
         document.addEventListener("mousemove", evt => {
             var x = evt.offsetX == undefined ? evt.layerX : evt.offsetX;
             var y = evt.offsetY == undefined ? evt.layerY : evt.offsetY;
+            if (move == true && index_flashlight >= 0) {
+                this.chessBoard.flashlights[index_flashlight].updateLocation(x, y);
+            }
+            if (click == true) {
+                move = true;
+            }
         })
 
         document.addEventListener("mouseup", evt => {
             var x = evt.offsetX == undefined ? evt.layerX : evt.offsetX;
             var y = evt.offsetY == undefined ? evt.layerY : evt.offsetY;
-            for (let i = 0; i < this.chessBoard.flashlights.length; i++)
-                if (this.chessBoard.flashlights[i].isClick(x, y)) {
-                    console.log(i);
-                    this.chessBoard.flashlights[i].rotate_90();
-                }
+
+            if (move == true) {
+                move = false;
+            } else {
+                for (let i = 0; i < this.chessBoard.flashlights.length; i++)
+                    if (this.chessBoard.flashlights[i].isClick(x, y)) {
+                        console.log("Up " + i);
+                        this.chessBoard.flashlights[i].rotate_90();
+                    }
+            }
+            click = false;
+            console.log("Move " + move);
         })
     }
 
