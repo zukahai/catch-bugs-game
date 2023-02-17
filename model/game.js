@@ -56,7 +56,9 @@ class game {
         document.addEventListener("mousedown", evt => {
             var x = evt.offsetX == undefined ? evt.layerX : evt.offsetX;
             var y = evt.offsetY == undefined ? evt.layerY : evt.offsetY;
-
+            for (let i = 0; i < this.chessBoard.flashlights.length; i++)
+                if (this.chessBoard.flashlights[i].isClick(x, y))
+                    console.log(i);
         })
 
         document.addEventListener("mousemove", evt => {
