@@ -9,10 +9,13 @@ class Flashlight {
         this.angle = 0;
 
         this.initXY();
-        this.asy = 2;
+        this.asy = 0;
 
-        this.bug_image = new Image();
-        this.bug_image.src = "assets/images/flashlights/" + (index_flashlight + 1) + "_" + this.asy + ".png";
+        this.flashlight_image = []
+        this.flashlight_image[0] = new Image();
+        this.flashlight_image[0].src = "assets/images/flashlights/" + (index_flashlight + 1) + "_1.png";
+        this.flashlight_image[1] = new Image();
+        this.flashlight_image[1].src = "assets/images/flashlights/" + (index_flashlight + 1) + "_2.png";
         console.log("init flashlight");
     }
 
@@ -36,6 +39,8 @@ class Flashlight {
 
     rotate_90() {
         this.angle += 90;
+        if (this.angle % 360 == 0)
+            this.asy = 1 - this.asy;
     }
 
     draw() {
@@ -47,7 +52,7 @@ class Flashlight {
         let y = -this.size + ((this.m + this.n == 3) ? 1 : 0) * this.size / 2;
         let width = this.n * this.size;
         let height = this.m * this.size;
-        this.game.context.drawImage(this.bug_image, x, y, width, height);
+        this.game.context.drawImage(this.flashlight_image[this.asy], x, y, width, height);
 
         this.game.context.restore();
 
