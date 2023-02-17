@@ -57,8 +57,10 @@ class game {
             var x = evt.offsetX == undefined ? evt.layerX : evt.offsetX;
             var y = evt.offsetY == undefined ? evt.layerY : evt.offsetY;
             for (let i = 0; i < this.chessBoard.flashlights.length; i++)
-                if (this.chessBoard.flashlights[i].isClick(x, y))
+                if (this.chessBoard.flashlights[i].isClick(x, y)) {
                     console.log(i);
+                    this.chessBoard.flashlights[i].rotate_90();
+                }
         })
 
         document.addEventListener("mousemove", evt => {

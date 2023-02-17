@@ -3,35 +3,51 @@ class Flashlight {
         this.game = game;
         this.m = m;
         this.n = n;
-
-        this.angle = 180;
-        let x_chessboard = (game_W - 4 * size) / 2;
-        this.x = (index_flashlight % 2 == 0) ? x_chessboard - 3 * size : x_chessboard + 5 * size;
-        this.y = size + 2.5 * size * Math.floor(index_flashlight / 2);
         this.size = size;
+        this.index_flashlight = index_flashlight;
+
+        this.angle = 0;
+
+        this.initXY();
 
         this.bug_image = new Image();
         this.bug_image.src = "assets/images/flashlights/" + (index_flashlight + 1) + ".png";
         console.log("init flashlight");
     }
 
+    initXY() {
+        let x_chessboard = (game_W - 4 * this.size) / 2;
+        this.x = (this.index_flashlight % 2 == 0) ? x_chessboard - 3 * this.size : x_chessboard + 5 * this.size;
+        this.y = this.size + 2.5 * this.size * Math.floor(this.index_flashlight / 2);
+    }
+
     isClick(x, y) {
         if (x < this.x)
             return false;
-        if (x > this.x + this.n * this.size)
+        if (x > this.x + 2 * this.size)
             return false;
         if (y < this.y)
             return false;
-        if (y > this.y + this.m * this.size)
+        if (y > this.y + 2 * this.size)
             return false;
         return true;
+    }
+
+    rotate_90() {
+        this.angle += 90;
     }
 
     draw() {
         this.game.context.save();
         this.game.context.translate(this.x + this.size, this.y + this.size);
         this.game.context.rotate(Angle.toRadian(this.angle));
-        this.game.context.drawImage(this.bug_image, -this.size, -this.size + 0.5 * this.size * ((this.m + this.n == 3) ? 1 : 0), this.n * this.size, this.m * this.size);
+
+        let x = -this.size;
+        let y = -this.size + ((this.m + this.n == 3) ? 1 : 0) * this.size / 2;
+        let width = this.n * this.size;
+        let height = this.m * this.size;
+        this.game.context.drawImage(this.bug_image, x, y, width, height);
+
         this.game.context.restore();
 
     }
