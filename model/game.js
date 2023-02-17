@@ -22,6 +22,7 @@ class game {
         this.context = this.canvas.getContext("2d");
         document.body.appendChild(this.canvas);
         Angle.toRadian();
+        this.algorithm = new Algorithm();
 
         this.render();
         this.chessBoard = new ChessBoard(this);

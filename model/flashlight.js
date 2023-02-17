@@ -42,43 +42,14 @@ class Flashlight {
 
     rotate_90() {
         this.angle += 90;
-        this.rotateBlockNext();
+        this.block = Matrix.rotateBlockNext(this.block);
         if (this.angle % 360 == 0) {
             this.asy = 1 - this.asy;
-            this.symmetryBlock();
+            this.block = Matrix.symmetryBlock(this.block);
         }
 
     }
 
-    rotateBlockNext() {
-        let temp = []
-        let m = this.block.length;
-        let n = this.block[0].length;
-        let index1 = 0;
-        let index2 = m - 1;
-        for (let i = 0; i < n; i++) {
-            let t = [];
-            for (let j = 0; j < m; j++) {
-                t[j] = this.block[index2][index1];
-                index2--;
-            }
-            index2 = m - 1;
-            index1++;
-            temp[i] = t;
-        }
-        this.block = temp;
-    }
-
-    symmetryBlock() {
-        let m = this.block.length;
-        let n = this.block[0].length;
-        for (let i = 0; i < m; i++)
-            for (let j = 0; j < n / 2; j++) {
-                let t = this.block[i][j];
-                this.block[i][j] = this.block[i][n - j - 1];
-                this.block[i][n - j - 1] = t;
-            }
-    }
 
     updateLocation(x, y) {
         this.x = x - this.size;
