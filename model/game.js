@@ -90,8 +90,8 @@ class game {
             } else {
                 for (let i = 0; i < this.chessBoard.flashlights.length; i++)
                     if (this.chessBoard.flashlights[i].isClick(x, y)) {
-                        // console.log("Up " + i);
                         this.chessBoard.flashlights[i].rotate_90();
+                        console.log(this.chessBoard.flashlights[i].block);
                     }
             }
             click = false;

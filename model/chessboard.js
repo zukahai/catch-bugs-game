@@ -26,11 +26,17 @@ class ChessBoard {
 
     initMatrix() {
         this.matrix = [
-            [1, 1, 0, 0],
-            [0, 0, 0, 0],
-            [1, 1, 0, 0],
-            [0, 1, 0, 1]
+            [0, 1, 0, 1],
+            [1, 0, 1, 0],
+            [1, 0, 0, 0],
+            [0, 0, 1, 0]
         ];
+        this.block = [
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0]
+        ]
     }
 
     initBug() {
@@ -59,8 +65,32 @@ class ChessBoard {
             [1, 2],
             [1, 2]
         ]
+        let block = [
+            [
+                [2, 0],
+                [1, 2]
+            ],
+            [
+                [1, 0],
+                [2, 1]
+            ],
+            [
+                [2, 0],
+                [1, 1]
+            ],
+            [
+                [2, 0],
+                [1, 1]
+            ],
+            [
+                [1, 2]
+            ],
+            [
+                [1, 1]
+            ]
+        ]
         for (let i = 0; i < N_flashlight; i++)
-            this.flashlights[i] = new Flashlight(this.game, m_n[i][0], m_n[i][1], this.size, i);
+            this.flashlights[i] = new Flashlight(this.game, m_n[i][0], m_n[i][1], this.size, i, block[i]);
     }
 
     isInChessBoard(x, y) {
