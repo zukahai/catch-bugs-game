@@ -93,6 +93,27 @@ class ChessBoard {
             this.flashlights[i] = new Flashlight(this.game, m_n[i][0], m_n[i][1], this.size, i, block[i]);
     }
 
+    updateBlock() {
+        this.block = [
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0]
+        ]
+        for (let i = 0; i < this.flashlights.length; i++) {
+            let x = this.flashlights[i].x_real + this.size / 2;
+            let y = this.flashlights[i].y_real + this.size / 2;
+            if (x >= this.x && x <= this.x + 4 * this.size && y >= this.y && y <= this.y + this.size * 4) {
+                let N = Math.floor((x - this.x) / this.size);
+                let M = Math.floor((y - this.y) / this.size);
+                // console.log(M, ' ', N);
+                for (let i1 = 0; i1 < this.flashlights[i].block.length; i1++)
+                    for (let i2 = 0; i2 < this.flashlights[i].block[0].length; i2++)
+                        this.block[M + i1][N + i2] += this.flashlights[i].block[i1][i2];
+            }
+        }
+    }
+
     isInChessBoard(x, y) {
         if (x < this.x - this.size / 2)
             return false;
@@ -113,7 +134,17 @@ class ChessBoard {
         } else {
             this.flashlights[index].resetLacation();
         }
+    }
 
+    checkResult() {
+        for (let i = 0; i < N; i++)
+            for (let j = 0; j < N; j++) {
+                if (this.block[i][j] == 0)
+                    return false;
+                if (this.matrix[i][j] == 1 && this.block[i][j] != 2)
+                    return false;
+            }
+        return true;
     }
 
     drawBug() {

@@ -87,7 +87,9 @@ class game {
             if (move == true) {
                 move = false;
                 this.chessBoard.updateLocationFlashlight(index_flashlight);
+                this.chessBoard.updateBlock();
                 console.log(this.chessBoard.block);
+                console.log(this.chessBoard.checkResult());
             } else {
                 for (let i = 0; i < this.chessBoard.flashlights.length; i++)
                     if (this.chessBoard.flashlights[i].isClick(x, y)) {
