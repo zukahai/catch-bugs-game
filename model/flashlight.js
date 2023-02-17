@@ -23,6 +23,8 @@ class Flashlight {
         let x_chessboard = (game_W - 4 * this.size) / 2;
         this.x = (this.index_flashlight % 2 == 0) ? x_chessboard - 3 * this.size : x_chessboard + 5 * this.size;
         this.y = this.size + 2.5 * this.size * Math.floor(this.index_flashlight / 2);
+        this.x_real = this.x;
+        this.y_real = this.y;
     }
 
     isClick(x, y) {
@@ -44,8 +46,39 @@ class Flashlight {
     }
 
     updateLocation(x, y) {
-        this.x = x;
-        this.y = y;
+        this.x = x - this.size;
+        this.y = y - this.size;
+        this.update_XY_real();
+    }
+
+    update_XY_real() {
+        this.x_real = this.x;
+        this.y_real = this.y;
+        if (this.m + this.n == 3) {
+            if (this.angle % 180 == 0) {
+                this.y_real += this.size / 2;
+            } else {
+                this.x_real += this.size / 2;
+            }
+        }
+    }
+
+    updateLocationFromXYReal(x_real, y_real) {
+        this.x = x_real;
+        this.y = y_real;
+        if (this.m + this.n == 3) {
+            if (this.angle % 180 == 0) {
+                this.y -= this.size / 2;
+            } else {
+                this.x -= this.size / 2;
+            }
+        }
+        this.update_XY_real();
+    }
+
+    resetLacation() {
+        this.initXY();
+        this.update_XY_real();
     }
 
     draw() {

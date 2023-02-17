@@ -62,7 +62,7 @@ class game {
             var y = evt.offsetY == undefined ? evt.layerY : evt.offsetY;
             for (let i = 0; i < this.chessBoard.flashlights.length; i++)
                 if (this.chessBoard.flashlights[i].isClick(x, y)) {
-                    console.log("Down " + i);
+                    // console.log("Down " + i);
                     click = true;
                     index_flashlight = i;
                 }
@@ -86,15 +86,16 @@ class game {
 
             if (move == true) {
                 move = false;
+                this.chessBoard.updateLocationFlashlight(index_flashlight);
             } else {
                 for (let i = 0; i < this.chessBoard.flashlights.length; i++)
                     if (this.chessBoard.flashlights[i].isClick(x, y)) {
-                        console.log("Up " + i);
+                        // console.log("Up " + i);
                         this.chessBoard.flashlights[i].rotate_90();
                     }
             }
             click = false;
-            console.log("Move " + move);
+            // console.log("Move " + move);
         })
     }
 

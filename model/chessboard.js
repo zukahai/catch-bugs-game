@@ -63,6 +63,29 @@ class ChessBoard {
             this.flashlights[i] = new Flashlight(this.game, m_n[i][0], m_n[i][1], this.size, i);
     }
 
+    isInChessBoard(x, y) {
+        if (x < this.x - this.size / 2)
+            return false;
+        if (x > this.x + 3 * this.size)
+            return false;
+        if (y < this.y - this.size / 2)
+            return false;
+        if (y > this.y + 3 * this.size)
+            return false;
+        return true;
+    }
+
+    updateLocationFlashlight(index) {
+        if (this.isInChessBoard(this.flashlights[index].x_real, this.flashlights[index].y_real)) {
+            let x_real_new = Math.round((this.flashlights[index].x_real - this.x) / this.size) * this.size + this.x;
+            let y_real_new = Math.round((this.flashlights[index].y_real - this.y) / this.size) * this.size + this.y;
+            this.flashlights[index].updateLocationFromXYReal(x_real_new, y_real_new);
+        } else {
+            this.flashlights[index].resetLacation();
+        }
+
+    }
+
     drawBug() {
         for (let i = 0; i < this.bugs.length; i++)
             this.bugs[i].draw();
@@ -74,7 +97,7 @@ class ChessBoard {
     }
 
     draw() {
-        let size_2 = this.size / 2;
+        let size_2 = this.size / 1.25;
         this.game.context.drawImage(chessBoard_image, this.x, this.y, this.size * 4, this.size * 4);
         this.drawBug();
         this.drawFlashlight();
