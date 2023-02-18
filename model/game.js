@@ -88,8 +88,12 @@ class game {
                 move = false;
                 this.chessBoard.updateLocationFlashlight(index_flashlight);
                 this.chessBoard.updateBlock();
-                console.log(this.chessBoard.block);
-                console.log(this.chessBoard.checkResult());
+                // console.log(this.chessBoard.block);
+                // console.log(this.chessBoard.checkResult());
+                if (this.chessBoard.checkResult()) {
+                    alert("0840140264088 - MB bank - PHAN DUC HAI. Donate để phát triển game :))");
+                    location.reload();
+                }
             } else {
                 for (let i = 0; i < this.chessBoard.flashlights.length; i++)
                     if (this.chessBoard.flashlights[i].isClick(x, y)) {
@@ -99,7 +103,7 @@ class game {
                             this.chessBoard.flashlights[i].rotate_90();
                         }
                         // console.log(this.chessBoard.flashlights[i].block);
-                        console.log(this.chessBoard.block);
+                        // console.log(this.chessBoard.block);
                     }
             }
             click = false;

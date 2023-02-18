@@ -17,7 +17,7 @@ class Flashlight {
         this.flashlight_image[0].src = "assets/images/flashlights/" + (index_flashlight + 1) + "_1.png";
         this.flashlight_image[1] = new Image();
         this.flashlight_image[1].src = "assets/images/flashlights/" + (index_flashlight + 1) + "_2.png";
-        console.log("init flashlight");
+        // console.log("init flashlight");
     }
 
     initXY() {
