@@ -1,7 +1,7 @@
 class Algorithm {
     constructor() {
         console.log("Algorithm");
-        this.result = [];
+        this.result = new Set();
         this.N_result = 0;
         this.matrix = [
             [0, 0, 0, 0],
@@ -57,7 +57,18 @@ class Algorithm {
             [0, 0, 0, 0]
         ];
         this.dfs(1, matrix, this.copyMatrix(matrix));
-        console.log(this.result);
+        // console.log(this.randomLevel());
+    }
+
+    randomLevel() {
+        let temp = [...this.result];
+        let level = temp[Math.floor(Math.random() * 1000000) % temp.length];
+        let data = JSON.parse(level).data;
+        console.log("Level ", JSON.parse(level).data);
+        for (let i = 0; i < this.N; i++)
+            for (let j = 0; j < this.N; j++)
+                data[i][j] -= 1;
+        return data;
     }
 
     isLocation(matrix, block, indexI, indexJ) {
@@ -72,6 +83,8 @@ class Algorithm {
                     return false;
         return true;
     }
+
+
 
     dfs(index, matrix, R) {
         let result_temp = this.copyMatrix(matrix);
@@ -91,14 +104,17 @@ class Algorithm {
                                 if (block_current[i2][j2] != 0)
                                     R_temp[i + i2][j + j2] = index;
                             }
-                        if (rotate == 4)
-                            block_current = Matrix.symmetryBlock(block_current);
                         if (index == 6) {
-                            this.result[this.N_result++] = { data: result_temp, result: R_temp };
-                        } else
+                            this.result.add(JSON.stringify({ data: result_temp, result: R_temp }));
+                        } else if (this.result.size < 100)
                             this.dfs(index + 1, result_temp, R_temp);
                     }
+                    result_temp = result_temp = this.copyMatrix(matrix);
+                    R_temp = this.copyMatrix(R);
+
                 }
+            if (rotate == 4)
+                block_current = Matrix.symmetryBlock(block_current);
             block_current = Matrix.rotateBlockNext(block_current);
 
         }

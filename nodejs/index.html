@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Read JSON file</title>
+</head>
+
+<body>
+
+    <script>
+        // Create a new XMLHttpRequest object
+        const xhr = new XMLHttpRequest();
+
+        // Define the callback function to handle the response
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Parse the JSON data and save it to a variable
+                const jsonData = JSON.parse(this.responseText);
+
+                // Use the jsonData variable in your JavaScript code
+                console.log(jsonData);
+            }
+        };
+
+        // Open the HTTP GET request and specify the file URL
+        xhr.open("GET", "file.json", true);
+
+        // Send the request to the server
+        xhr.send();
+    </script>
+
+</body>
+
+</html>

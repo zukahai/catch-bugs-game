@@ -31,6 +31,18 @@ class ChessBoard {
             [1, 0, 0, 0],
             [0, 0, 1, 0]
         ];
+
+
+        // Level.getRandomLevel(function(levelData) {
+        //     console.log(levelData);
+        //     this.matrix = levelData.data
+        //     console.log(this.matrix);
+        // }).then(result => {
+
+        // })
+
+        // console.log(Level.randomLevel());
+        this.matrix = Level.randomLevel();
         this.block = [
             [0, 0, 0, 0],
             [0, 0, 0, 0],
