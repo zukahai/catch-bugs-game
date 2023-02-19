@@ -91,8 +91,9 @@ class game {
                 // console.log(this.chessBoard.block);
                 // console.log(this.chessBoard.checkResult());
                 if (this.chessBoard.checkResult()) {
-                    alert("0840140264088 - MB bank - PHAN DUC HAI. Donate để phát triển game :))");
-                    location.reload();
+                    // alert("0840140264088 - MB bank - PHAN DUC HAI. Donate để phát triển game :))");
+                    // location.reload();
+                    this.newGame();
                 }
             } else {
                 for (let i = 0; i < this.chessBoard.flashlights.length; i++)
@@ -109,6 +110,12 @@ class game {
             click = false;
             // console.log("Move " + move);
         })
+    }
+
+    newGame() {
+        for (let i = 0; i < this.chessBoard.flashlights.length; i++)
+            this.chessBoard.flashlights[i].resetLacation();
+        this.chessBoard.newGame();
     }
 
     render() {

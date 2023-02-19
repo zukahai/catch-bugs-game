@@ -48,7 +48,12 @@ class ChessBoard {
             [0, 0, 0, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0]
-        ]
+        ];
+    }
+
+    newGame() {
+        this.initMatrix();
+        this.initBug();
     }
 
     initBug() {
