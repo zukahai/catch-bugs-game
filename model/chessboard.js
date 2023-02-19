@@ -19,6 +19,7 @@ class ChessBoard {
         this.x = (game_W - 4 * this.size) / 2;
         this.y = (game_H - 4 * this.size) / 2;
 
+        this.levels = Level.getData();
         this.initMatrix();
         this.initBug();
         this.initFlashlight();
@@ -42,13 +43,21 @@ class ChessBoard {
         // })
 
         // console.log(Level.randomLevel());
-        this.matrix = Level.randomLevel();
+        this.matrix = this.randomLevel();
         this.block = [
             [0, 0, 0, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0]
         ];
+    }
+
+    randomLevel() {
+        let level_data = this.levels[Math.floor(Math.random() * 1000000) % this.levels.length].data;
+        for (let i = 0; i < level_data.length; i++)
+            for (let j = 0; j < level_data.length; j++)
+                level_data[i][j] -= 1;
+        return level_data;
     }
 
     newGame() {
