@@ -15,6 +15,7 @@ class ChessBoard {
         this.bugs = [];
         this.flashlights = [];
         this.size = game_H / 8;
+        this.win = false;
 
         this.x = (game_W - 4 * this.size) / 2;
         this.y = (game_H - 4 * this.size) / 2;
@@ -54,7 +55,9 @@ class ChessBoard {
     }
 
     randomLevel() {
-        let level_data = this.levels[Math.floor(Math.random() * 1000000) % this.levels.length].data;
+        let random_level = this.levels[Math.floor(Math.random() * 1000000) % this.levels.length];
+        let level_data = random_level.data;
+        console.log(random_level.result);
         for (let i = 0; i < level_data.length; i++)
             for (let j = 0; j < level_data.length; j++)
                 level_data[i][j] -= 1;
@@ -63,6 +66,8 @@ class ChessBoard {
 
     newGame() {
         this.initMatrix();
+        for (let i = 0; i < this.flashlights.length; i++)
+            this.flashlights[i].resetLacation();
         this.initBug();
     }
 
@@ -175,6 +180,28 @@ class ChessBoard {
     }
 
     redrictLevel() {
+        let check = false;
+        for (let i = 0; i < this.flashlights.length; i++) {
+            let x_y = this.flashlights[i].getLocation(i);
+            let xt = this.flashlights[i].x;
+            let yt = this.flashlights[i].y;
+
+            this.flashlights[i].x = (x_y[0] + this.flashlights[i].x) / 2;
+            this.flashlights[i].y = (x_y[1] + this.flashlights[i].y) / 2;
+
+
+            for (let j = 0; j < 2; j++) {
+                this.flashlights[i].x = (xt + this.flashlights[i].x) / 2;
+                this.flashlights[i].y = (yt + this.flashlights[i].y) / 2;
+            }
+            if (Math.abs(this.flashlights[i].x - xt) < 0.01) {
+                check = true;
+            }
+        }
+        if (check) {
+            this.win = false;
+            this.newGame();
+        }
 
     }
 

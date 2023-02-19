@@ -31,10 +31,16 @@ class game {
     }
 
     loop() {
-        this.update();
+        if (!this.chessBoard.win) {
+            this.update();
+            this.render();
+
+        } else {
+            this.chessBoard.redrictLevel();
+        }
         this.draw();
-        this.render();
         setTimeout(() => this.loop(), 30);
+
     }
 
     update() {
@@ -93,7 +99,8 @@ class game {
                 if (this.chessBoard.checkResult()) {
                     // alert("0840140264088 - MB bank - PHAN DUC HAI. Donate để phát triển game :))");
                     // location.reload();
-                    this.newGame();
+                    this.chessBoard.win = true;
+                    // this.newGame();
                 }
             } else {
                 for (let i = 0; i < this.chessBoard.flashlights.length; i++)

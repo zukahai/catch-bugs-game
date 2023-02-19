@@ -104,4 +104,11 @@ class Flashlight {
         this.game.context.restore();
 
     }
+
+    getLocation(index_flashlight) {
+        let x_chessboard = (game_W - 4 * this.size) / 2;
+        let x = (index_flashlight % 2 == 0) ? x_chessboard - 3 * this.size : x_chessboard + 5 * this.size;
+        let y = this.size + 2.5 * this.size * Math.floor(index_flashlight / 2);
+        return [x, y];
+    }
 }
