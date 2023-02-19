@@ -45,7 +45,7 @@ class Flashlight {
         this.block = Matrix.rotateBlockNext(this.block);
         if (this.angle % 360 == 0) {
             let index = (this.index_flashlight);
-            if (index != 0 && index != 1) {
+            if (index != 0 && index != 1 && index != 4) {
                 this.asy = 1 - this.asy;
                 this.block = Matrix.symmetryBlock(this.block);
             }

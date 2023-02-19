@@ -18,6 +18,7 @@ class ChessBoard {
 
         this.x = (game_W - 4 * this.size) / 2;
         this.y = (game_H - 4 * this.size) / 2;
+        this.redrict = false;
 
         this.levels = Level.getData();
         this.initMatrix();
@@ -171,6 +172,10 @@ class ChessBoard {
                     return false;
             }
         return true;
+    }
+
+    redrictLevel() {
+
     }
 
     drawBug() {
