@@ -16,7 +16,7 @@ class ChessBoard {
         this.flashlights = [];
         this.size = game_H / 8;
         this.win = false;
-        this.level = 1;
+        this.level = Cookie.getLevel();
 
         this.x = (game_W - 4 * this.size) / 2;
         this.y = (game_H - 4 * this.size) / 2;
@@ -82,6 +82,7 @@ class ChessBoard {
 
     newGame() {
         this.level++;
+        Cookie.setCookie("level", this.level, 30);
         this.initMatrix();
         for (let i = 0; i < this.flashlights.length; i++)
             this.flashlights[i].resetLacation();
