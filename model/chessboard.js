@@ -1,5 +1,5 @@
 let chessBoard_image = new Image();
-chessBoard_image.src = "assets/images/chessboards/chessboard.png";
+chessBoard_image.src = "assets/images/chessboards/chessboard1.png";
 
 let chessBoard_bg_image = new Image();
 chessBoard_bg_image.src = "assets/images/chessboards/chessboard_bg.png";
@@ -21,6 +21,8 @@ class ChessBoard {
         this.x = (game_W - 4 * this.size) / 2;
         this.y = (game_H - 4 * this.size) / 2;
         this.redrict = false;
+
+        this.randomChessboard();
 
         this.levels = Level.getData();
         this.initMatrix();
@@ -80,6 +82,11 @@ class ChessBoard {
         return level_data;
     }
 
+    randomChessboard() {
+        let index = Math.floor(Math.random() * 100000) % 10 + 1;
+        chessBoard_image.src = "assets/images/backgounds/" + index + ".png";
+    }
+
     newGame() {
         this.level++;
         Cookie.setCookie("level", this.level, 30);
@@ -87,6 +94,7 @@ class ChessBoard {
         for (let i = 0; i < this.flashlights.length; i++)
             this.flashlights[i].resetLacation();
         this.initBug();
+        this.randomChessboard();
     }
 
     initBug() {
