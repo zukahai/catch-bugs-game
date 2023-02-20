@@ -62,8 +62,8 @@ class ChessBoard {
         let rowMatrix = Math.floor(this.levels.length / group);
         let levelInIndex = this.levels[(level % rowMatrix) * group + Math.floor(level / group)];
         let level_data = levelInIndex.data;
-        console.log("Level " + (level + 1));
-        console.log(levelInIndex.result);
+        // console.log("Level " + (level + 1));
+        // console.log(levelInIndex.result);
         for (let i = 0; i < level_data.length; i++)
             for (let j = 0; j < level_data.length; j++)
                 level_data[i][j] -= 1;
