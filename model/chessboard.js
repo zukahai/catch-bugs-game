@@ -246,6 +246,6 @@ class ChessBoard {
         this.game.context.font = this.size / 3 + 'px MyCustomFont';
         this.game.context.fillStyle = "#99DFEC";
         this.game.context.textAlign = "center";
-        this.game.context.fillText(" Level " + ((this.win) ? (this.level + 1) : this.level), game_W / 2, this.size);
+        this.game.context.fillText(" Level " + ((this.win) ? (Math.floor(this.level) + 1) : this.level), game_W / 2, this.size);
     }
 }
