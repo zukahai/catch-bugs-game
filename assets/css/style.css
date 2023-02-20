@@ -1,14 +1,26 @@
-body{
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('../fonts/NVN\ PixelFJVerdana8pt.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'MyCustomFont', sans-serif;
+}
+
+body {
     background-size: cover;
 }
 
-body{
+body {
     background-color: white;
     margin: 0px;
     text-align: center;
 }
 
-html, body {
+html,
+body {
     margin: 0;
     height: 100%;
     overflow: hidden
@@ -16,8 +28,9 @@ html, body {
 
 html {
     scrollbar-width: none;
-    -ms-overflow-style: none; 
+    -ms-overflow-style: none;
 }
 
-html { overflow-y: hidden; }
-
+html {
+    overflow-y: hidden;
+}

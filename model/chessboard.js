@@ -238,5 +238,13 @@ class ChessBoard {
         this.drawBug();
         this.drawFlashlight();
         this.game.context.drawImage(chessBoard_bg_image, this.x - size_2 / 2, this.y - size_2 / 2, this.size * 4 + size_2, this.size * 4 + size_2);
+        this.drawText();
+    }
+
+    drawText() {
+        this.game.context.font = this.size / 3 + 'px MyCustomFont';
+        this.game.context.fillStyle = "#99DFEC";
+        this.game.context.textAlign = "center";
+        this.game.context.fillText(" Level " + this.level, game_W / 2, this.size);
     }
 }
