@@ -16,6 +16,7 @@ class ChessBoard {
         this.flashlights = [];
         this.size = game_H / 8;
         this.win = false;
+        this.level = 1;
 
         this.x = (game_W - 4 * this.size) / 2;
         this.y = (game_H - 4 * this.size) / 2;
@@ -45,13 +46,28 @@ class ChessBoard {
         // })
 
         // console.log(Level.randomLevel());
-        this.matrix = this.randomLevel();
+        // this.matrix = this.randomLevel();
+        this.matrix = this.getLevel(this.level);
         this.block = [
             [0, 0, 0, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0]
         ];
+    }
+
+    getLevel(level) {
+        level -= 1;
+        let group = 2712;
+        let rowMatrix = Math.floor(this.levels.length / group);
+        let levelInIndex = this.levels[(level % rowMatrix) * group + Math.floor(level / group)];
+        let level_data = levelInIndex.data;
+        console.log("Level " + (level + 1));
+        console.log(levelInIndex.result);
+        for (let i = 0; i < level_data.length; i++)
+            for (let j = 0; j < level_data.length; j++)
+                level_data[i][j] -= 1;
+        return level_data;
     }
 
     randomLevel() {
@@ -65,6 +81,7 @@ class ChessBoard {
     }
 
     newGame() {
+        this.level++;
         this.initMatrix();
         for (let i = 0; i < this.flashlights.length; i++)
             this.flashlights[i].resetLacation();
