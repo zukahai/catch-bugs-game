@@ -14,3 +14,12 @@ Trò chơi được hoàn thiện phiên bản đầu tiên vào ngày 21 tháng
 Mỗi màn chơi sẽ xếp hiện 6 con bọ trên bàn cờ và 6 mảnh ghép (Các mảnh ghép có thể xoay tuỳ ý khi người dùng bấm vào nó) <br>
 Trên mảnh ghép sẽ có các kính lúp, nhiệm vụ của bạn là sắp xếp các mảnh ghép vào bàn cờ sao các kính lúp đều soi ra được bọ. <br>
 Các mảnh ghép không được đè lên nhau.
+
+
+## Góp ý
+
+Trò chơi còn nhiều lỗi cũng như chưa được tối ưu về trải nghiệm của người dùng. <br>
+Tôi mong nhận được góp ý của các bạn về trò chơi [Tại đây](https://github.com/zukahai/catch-bugs/issues/new)
+<hr>
+
+# <p align="center"> Chúc các bạn chơi vui vẻ </p>
