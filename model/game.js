@@ -6,7 +6,7 @@ let logo = new Image();
 logo.src = "assets/images/logo.png";
 let fl = new Image();
 let phone_img = new Image();
-phone_img.src = "assets/images/phone/phone3.png";
+phone_img.src = "assets/images/phone/phone4.png";
 
 let move = false;
 let click = false;
@@ -51,32 +51,6 @@ class game {
 
     update() {
 
-    }
-
-
-    draw() {
-        this.clearScreen();
-        this.chessBoard.draw();
-        this.drawPhone();
-    }
-
-    drawPhone() {
-        if (game_W < 800) {
-            this.clearScreen();
-            let size = Math.min(game_W, game_H);
-            let x = (game_W - size) / 2;
-            let y = (game_H - size) / 2;
-            this.context.drawImage(phone_img, x, y, size, size);
-        }
-    }
-
-    clearScreen() {
-        this.context.clearRect(0, 0, game_W, game_H);
-        this.context.drawImage(bg, 0, 0, game_W, game_H);
-        this.context.drawImage(logo, game_H / 40, game_H / 40, game_H / 13, game_H / 13);
-        this.context.font = game_W / 20 + 'px Arial Black';
-        this.context.fillStyle = "#FF00CC";
-        this.context.textAlign = "center";
     }
 
     listenMouse() {
@@ -193,6 +167,32 @@ class game {
             this.chessBoard.flashlights[i].resetLacation();
         this.chessBoard.newGame();
     }
+
+    draw() {
+        this.clearScreen();
+        this.chessBoard.draw();
+        this.drawPhone();
+    }
+
+    drawPhone() {
+        if (game_W / game_H < 1.3) {
+            this.clearScreen();
+            let size = Math.min(game_W, game_H);
+            let x = (game_W - size) / 2;
+            let y = (game_H - size) / 2;
+            this.context.drawImage(phone_img, x, y, size, size);
+        }
+    }
+
+    clearScreen() {
+        this.context.clearRect(0, 0, game_W, game_H);
+        this.context.drawImage(bg, 0, 0, game_W, game_H);
+        this.context.drawImage(logo, game_H / 40, game_H / 40, game_H / 13, game_H / 13);
+        this.context.font = game_W / 20 + 'px Arial Black';
+        this.context.fillStyle = "#FF00CC";
+        this.context.textAlign = "center";
+    }
+
 
     render() {
         if (this.canvas.width != document.documentElement.clientWidth || this.canvas.height != document.documentElement.clientHeight) {
