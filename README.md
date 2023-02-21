@@ -23,3 +23,7 @@ Tôi mong nhận được góp ý của các bạn về trò chơi [Tại đây]
 <hr>
 
 # <p align="center"> Chúc các bạn chơi vui vẻ </p>
+
+<br>
+
+*Font chữ sử dụng trong trò chơi: **NVN verdana 8pt** cung cấp bởi [Font Việt Hoá NVN](https://www.facebook.com/NVNFONT)*
