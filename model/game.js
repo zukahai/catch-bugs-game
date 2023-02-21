@@ -12,6 +12,9 @@ let move = false;
 let click = false;
 let index_flashlight = -1;
 
+let x_touch = 0;
+let y_touch = 0;
+
 class game {
     constructor() {
         this.canvas = null;
@@ -30,6 +33,7 @@ class game {
         this.chessBoard.draw();
         this.loop();
         this.listenMouse();
+        this.listenTouch();
     }
 
     loop() {
@@ -79,57 +83,109 @@ class game {
         document.addEventListener("mousedown", evt => {
             var x = evt.offsetX == undefined ? evt.layerX : evt.offsetX;
             var y = evt.offsetY == undefined ? evt.layerY : evt.offsetY;
-            for (let i = 0; i < this.chessBoard.flashlights.length; i++)
-                if (this.chessBoard.flashlights[i].isClick(x, y)) {
-                    // console.log("Down " + i);
-                    click = true;
-                    index_flashlight = i;
-                }
+            this.actionDown(x, y);
 
         })
 
         document.addEventListener("mousemove", evt => {
             var x = evt.offsetX == undefined ? evt.layerX : evt.offsetX;
             var y = evt.offsetY == undefined ? evt.layerY : evt.offsetY;
-            if (move == true && index_flashlight >= 0) {
-                this.chessBoard.flashlights[index_flashlight].updateLocation(x, y);
-            }
-            if (click == true) {
-                move = true;
-            }
+            x_touch = x;
+            y_touch = y;
+            this.actionMove(x, y);
         })
 
         document.addEventListener("mouseup", evt => {
             var x = evt.offsetX == undefined ? evt.layerX : evt.offsetX;
             var y = evt.offsetY == undefined ? evt.layerY : evt.offsetY;
-
-            if (move == true) {
-                move = false;
-                this.chessBoard.updateLocationFlashlight(index_flashlight);
-                this.chessBoard.updateBlock();
-                // console.log(this.chessBoard.block);
-                // console.log(this.chessBoard.checkResult());
-                if (this.chessBoard.checkResult()) {
-                    // alert("0840140264088 - MB bank - PHAN DUC HAI. Donate để phát triển game :))");
-                    // location.reload();
-                    this.chessBoard.win = true;
-                    // this.newGame();
-                }
-            } else {
-                for (let i = 0; i < this.chessBoard.flashlights.length; i++)
-                    if (this.chessBoard.flashlights[i].isClick(x, y)) {
-                        if (x > this.chessBoard.x && x < this.chessBoard.x + this.chessBoard.size * 4) {
-                            this.chessBoard.flashlights[i].resetLacation();
-                        } else {
-                            this.chessBoard.flashlights[i].rotate_90();
-                        }
-                        // console.log(this.chessBoard.flashlights[i].block);
-                        // console.log(this.chessBoard.block);
-                    }
-            }
-            click = false;
-            // console.log("Move " + move);
+            this.actionUp(x, y);
         })
+    }
+
+    listenTouch() {
+        document.addEventListener("touchmove", evt => {
+            var y = evt.touches[0].pageY;
+            var x = evt.touches[0].pageX;
+            this.actionMove(x, y);
+        })
+
+        document.addEventListener("touchstart", evt => {
+            let y = evt.touches[0].pageY;
+            let x = evt.touches[0].pageX;
+            this.actionDown(x, y);
+
+        })
+
+        document.addEventListener("touchend", evt => {
+            let x = x_touch;
+            let y = y_touch;
+            // this.actionUp(x, y);
+            this.actionUpTouch(x, y);
+        })
+    }
+
+    actionDown(x, y) {
+        for (let i = 0; i < this.chessBoard.flashlights.length; i++)
+            if (this.chessBoard.flashlights[i].isClick(x, y)) {
+                // console.log("Down " + i);
+                click = true;
+                index_flashlight = i;
+            }
+    }
+
+    actionMove(x, y) {
+        if (move == true && index_flashlight >= 0) {
+            this.chessBoard.flashlights[index_flashlight].updateLocation(x, y);
+        }
+        if (click == true) {
+            move = true;
+        }
+    }
+
+    actionUp(x, y) {
+        if (move == true) {
+            move = false;
+            this.chessBoard.updateLocationFlashlight(index_flashlight);
+            this.chessBoard.updateBlock();
+            // console.log(this.chessBoard.block);
+            // console.log(this.chessBoard.checkResult());
+            if (this.chessBoard.checkResult()) {
+                // alert("0840140264088 - MB bank - PHAN DUC HAI. Donate để phát triển game :))");
+                // location.reload();
+                this.chessBoard.win = true;
+                // this.newGame();
+            }
+        } else {
+            for (let i = 0; i < this.chessBoard.flashlights.length; i++)
+                if (this.chessBoard.flashlights[i].isClick(x, y)) {
+                    if (x > this.chessBoard.x && x < this.chessBoard.x + this.chessBoard.size * 4) {
+                        this.chessBoard.flashlights[i].resetLacation();
+                    } else {
+                        this.chessBoard.flashlights[i].rotate_90();
+                    }
+                    break;
+                    // console.log(this.chessBoard.flashlights[i].block);
+                    // console.log(this.chessBoard.block);
+                }
+        }
+        click = false;
+    }
+
+    actionUpTouch(x, y) {
+        if (move == true) {
+            move = false;
+            this.chessBoard.updateLocationFlashlight(index_flashlight);
+            this.chessBoard.updateBlock();
+            // console.log(this.chessBoard.block);
+            // console.log(this.chessBoard.checkResult());
+            if (this.chessBoard.checkResult()) {
+                // alert("0840140264088 - MB bank - PHAN DUC HAI. Donate để phát triển game :))");
+                // location.reload();
+                this.chessBoard.win = true;
+                // this.newGame();
+            }
+        }
+        click = false;
     }
 
     newGame() {
