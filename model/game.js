@@ -5,6 +5,8 @@ bg.src = "assets/images/bg.png";
 let logo = new Image();
 logo.src = "assets/images/logo.png";
 let fl = new Image();
+let phone_img = new Image();
+phone_img.src = "assets/images/phone/phone3.png";
 
 let move = false;
 let click = false;
@@ -51,6 +53,17 @@ class game {
     draw() {
         this.clearScreen();
         this.chessBoard.draw();
+        this.drawPhone();
+    }
+
+    drawPhone() {
+        if (game_W < 800) {
+            this.clearScreen();
+            let size = Math.min(game_W, game_H);
+            let x = (game_W - size) / 2;
+            let y = (game_H - size) / 2;
+            this.context.drawImage(phone_img, x, y, size, size);
+        }
     }
 
     clearScreen() {
@@ -131,6 +144,8 @@ class game {
             this.canvas.height = document.documentElement.clientHeight;
             game_W = this.canvas.width;
             game_H = this.canvas.height;
+            this.chessBoard = new ChessBoard(this);
+            this.chessBoard.draw();
         }
     }
 
