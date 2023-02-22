@@ -65,7 +65,7 @@ class ChessBoard {
         let levelInIndex = this.levels[(level % rowMatrix) * group + Math.floor(level / group)];
         let level_data = levelInIndex.data;
         // console.log("Level " + (level + 1));
-        // console.log(levelInIndex.result);
+        console.log(levelInIndex.result);
         for (let i = 0; i < level_data.length; i++)
             for (let j = 0; j < level_data.length; j++)
                 level_data[i][j] -= 1;
@@ -224,6 +224,13 @@ class ChessBoard {
                 check = true;
             }
         }
+        for (let i = 0; i < this.bugs.length; i++) {
+            let locationChange = this.bugs[i].size - this.bugs[i].size / 1.07;
+            this.bugs[i].size /= 1.08;
+            this.bugs[i].x += locationChange / 2;
+            this.bugs[i].y += locationChange / 2;
+        }
+
         if (check) {
             this.win = false;
             this.newGame();
