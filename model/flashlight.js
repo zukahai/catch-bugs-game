@@ -8,6 +8,7 @@ class Flashlight {
         this.block = block;
 
         this.angle = 0;
+        this.preAngle = 0;
 
         this.initXY();
         this.asy = 0;
@@ -42,6 +43,7 @@ class Flashlight {
 
     rotate_90() {
         this.angle += 90;
+        // this.preAngle = this.angle;
         this.block = Matrix.rotateBlockNext(this.block);
         if (this.angle % 360 == 0) {
             let index = (this.index_flashlight);
@@ -93,7 +95,9 @@ class Flashlight {
     draw() {
         this.game.context.save();
         this.game.context.translate(this.x + this.size, this.y + this.size);
-        this.game.context.rotate(Angle.toRadian(this.angle));
+        this.game.context.rotate(Angle.toRadian(this.preAngle));
+        if (this.preAngle < this.angle)
+            this.preAngle += 9;
 
         let x = -this.size;
         let y = -this.size + ((this.m + this.n == 3) ? 1 : 0) * this.size / 2;
