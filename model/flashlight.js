@@ -44,17 +44,16 @@ class Flashlight {
     rotate_90() {
         this.angle += 90;
         // this.preAngle = this.angle;
-        this.block = Matrix.rotateBlockNext(this.block);
+
         this.symmetry.nextIndex();
         let index = (this.index_flashlight);
         if (this.symmetry.isSymmetry() && index != 0 && index != 1 && index != 4 && index != 5) {
             this.angle -= 90;
-            if (index != 0 && index != 1 && index != 4) {
-                // this.symmetry.changeAys();
-                this.block = Matrix.symmetryBlock(this.block);
-            }
+            this.block = Matrix.symmetryBlock(this.block);
             this.symmetry.changeActive();
             this.symmetry.step += 1;
+        } else {
+            this.block = Matrix.rotateBlockNext(this.block);
         }
 
     }
