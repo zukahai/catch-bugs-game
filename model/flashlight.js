@@ -15,9 +15,9 @@ class Flashlight {
 
         this.flashlight_image = []
         this.flashlight_image[0] = new Image();
-        this.flashlight_image[0].src = "assets/images/flashlights/" + (index_flashlight + 1) + "_1.png";
+        this.flashlight_image[0].src = "assets/images/flashlights_svg/" + (index_flashlight + 1) + "_1.svg";
         this.flashlight_image[1] = new Image();
-        this.flashlight_image[1].src = "assets/images/flashlights/" + (index_flashlight + 1) + "_2.png";
+        this.flashlight_image[1].src = "assets/images/flashlights_svg/" + (index_flashlight + 1) + "_2.svg";
         // console.log("init flashlight");
     }
 
@@ -97,7 +97,7 @@ class Flashlight {
         this.game.context.translate(this.x + this.size, this.y + this.size);
         this.game.context.rotate(Angle.toRadian(this.preAngle));
         if (this.preAngle < this.angle)
-            this.preAngle += 18;
+            this.preAngle += 12;
 
         let x = -this.size;
         let y = -this.size + ((this.m + this.n == 3) ? 1 : 0) * this.size / 2;
