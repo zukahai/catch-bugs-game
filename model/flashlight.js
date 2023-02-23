@@ -11,7 +11,6 @@ class Flashlight {
         this.preAngle = 0;
 
         this.initXY();
-        this.asy = 0;
 
         this.flashlight_image = []
         this.flashlight_image[0] = new Image();
@@ -48,12 +47,14 @@ class Flashlight {
         this.block = Matrix.rotateBlockNext(this.block);
         this.symmetry.nextIndex();
         let index = (this.index_flashlight);
-        if (this.symmetry.isSymmetry() && index != 0 && index != 1 && index != 4) {
+        if (this.symmetry.isSymmetry() && index != 0 && index != 1 && index != 4 && index != 5) {
             this.angle -= 90;
             if (index != 0 && index != 1 && index != 4) {
-                this.asy = 1 - this.asy;
+                // this.symmetry.changeAys();
                 this.block = Matrix.symmetryBlock(this.block);
             }
+            this.symmetry.changeActive();
+            this.symmetry.step += 1;
         }
 
     }
@@ -106,7 +107,12 @@ class Flashlight {
         let y = -this.size + ((this.m + this.n == 3) ? 1 : 0) * this.size / 2;
         let width = this.n * this.size;
         let height = this.m * this.size;
-        this.game.context.drawImage(this.flashlight_image[this.asy], x, y, width, height);
+        if (this.symmetry.isActive) {
+            x = x + (width - this.n * this.symmetry.size) / 2;
+            this.game.context.drawImage(this.flashlight_image[this.symmetry.asy], x, y, this.n * this.symmetry.size, height);
+            this.symmetry.changeDraw();
+        } else
+            this.game.context.drawImage(this.flashlight_image[this.symmetry.asy], x, y, width, height);
 
         this.game.context.restore();
 
