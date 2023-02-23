@@ -97,7 +97,7 @@ class Flashlight {
         this.game.context.translate(this.x + this.size, this.y + this.size);
         this.game.context.rotate(Angle.toRadian(this.preAngle));
         if (this.preAngle < this.angle)
-            this.preAngle += 9;
+            this.preAngle += 18;
 
         let x = -this.size;
         let y = -this.size + ((this.m + this.n == 3) ? 1 : 0) * this.size / 2;
