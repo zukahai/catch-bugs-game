@@ -18,6 +18,7 @@ class Flashlight {
         this.flashlight_image[0].src = "assets/images/flashlights_svg/" + (index_flashlight + 1) + "_1.svg";
         this.flashlight_image[1] = new Image();
         this.flashlight_image[1].src = "assets/images/flashlights_svg/" + (index_flashlight + 1) + "_2.svg";
+        this.symmetry = new Symmetry(this.x, this.y, this.size);
         // console.log("init flashlight");
     }
 
@@ -45,8 +46,10 @@ class Flashlight {
         this.angle += 90;
         // this.preAngle = this.angle;
         this.block = Matrix.rotateBlockNext(this.block);
-        if (this.angle % 360 == 0) {
-            let index = (this.index_flashlight);
+        this.symmetry.nextIndex();
+        let index = (this.index_flashlight);
+        if (this.symmetry.isSymmetry() && index != 0 && index != 1 && index != 4) {
+            this.angle -= 90;
             if (index != 0 && index != 1 && index != 4) {
                 this.asy = 1 - this.asy;
                 this.block = Matrix.symmetryBlock(this.block);
@@ -97,7 +100,7 @@ class Flashlight {
         this.game.context.translate(this.x + this.size, this.y + this.size);
         this.game.context.rotate(Angle.toRadian(this.preAngle));
         if (this.preAngle < this.angle)
-            this.preAngle += 12;
+            this.preAngle += 18;
 
         let x = -this.size;
         let y = -this.size + ((this.m + this.n == 3) ? 1 : 0) * this.size / 2;
