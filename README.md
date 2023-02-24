@@ -16,7 +16,7 @@ Trò chơi được hoàn thiện phiên bản đầu tiên vào ngày 21 tháng
 Mỗi màn chơi sẽ xếp hiện 6 con bọ trên bàn cờ và 6 mảnh ghép (Các mảnh ghép có thể xoay tuỳ ý khi người dùng bấm vào nó) <br>
 Trên mảnh ghép sẽ có các kính lúp, nhiệm vụ của bạn là sắp xếp các mảnh ghép vào bàn cờ sao các kính lúp đều soi ra được bọ. <br>
 Các mảnh ghép không được đè lên nhau. <br>
-Ví dụ của một chiến thằng:
+Ví dụ của một chiến thắng:
 <p align="center"> <img src="./assets/images/demo/demo.png" alt="bg" /> </p>
 
 ### 2.2 Xoay các mảnh ghép
