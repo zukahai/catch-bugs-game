@@ -36,13 +36,13 @@ class Symmetry {
     changeDraw() {
         if (this.isActive) {
             if (this.step == 1) {
-                this.size /= 2;
+                this.size -= this.SIZE / 3;
                 if (this.size < this.SIZE / 10) {
                     this.step = 2;
                     this.changeAys();
                 }
             } else {
-                this.size *= 2;
+                this.size += this.SIZE / 3;
                 if (this.size >= this.SIZE) {
                     this.step = 0;
                     this.changeActive();
