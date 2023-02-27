@@ -11,7 +11,7 @@ class Symmetry {
         this.step = 0;
 
         this.asy = 0;
-        console.log("symmetry");
+        // console.log("symmetry");
     }
 
     nextIndex() {
