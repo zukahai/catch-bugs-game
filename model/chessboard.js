@@ -27,7 +27,7 @@ class ChessBoard {
         this.levels = Level.getData();
         this.initMatrix();
         this.initBug();
-        this.initMessager();
+        this.initmesenger();
         this.initFlashlight();
     }
 
@@ -59,8 +59,8 @@ class ChessBoard {
         ];
     }
 
-    initMessager() {
-        this.messager = new Messager(this.game, this.size);
+    initmesenger() {
+        this.mesenger = new Mesenger(this.game, this.size);
     }
 
     getLevel(level) {
@@ -253,19 +253,19 @@ class ChessBoard {
             this.flashlights[i].draw();
     }
 
-    drawMessager() {
-        if (!this.messager.active) {
+    drawmesenger() {
+        if (!this.mesenger.active) {
             for (let i = 0; i < N; i++)
                 for (let j = 0; j < N; j++) {
                     if (this.matrix[i][j] == 1 && this.block[i][j] == 0) {
-                        if (!this.messager.active && this.messager.randomActive() == true) {
-                            this.messager.setXY(i, j);
+                        if (!this.mesenger.active && this.mesenger.randomActive() == true) {
+                            this.mesenger.setXY(i, j);
                         }
                     }
                 }
         }
 
-        this.messager.draw();
+        this.mesenger.draw();
     }
 
     draw() {
@@ -274,7 +274,7 @@ class ChessBoard {
         this.drawBug();
         this.drawFlashlight();
         this.game.context.drawImage(chessBoard_bg_image, this.x - size_2 / 2, this.y - size_2 / 2, this.size * 4 + size_2, this.size * 4 + size_2);
-        this.drawMessager();
+        this.drawmesenger();
         this.drawText();
     }
 

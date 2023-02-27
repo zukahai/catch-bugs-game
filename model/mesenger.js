@@ -1,4 +1,4 @@
-class Messager {
+class Mesenger {
     constructor(game, size) {
         this.N_image = 15;
         this.game = game;
