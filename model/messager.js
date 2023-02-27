@@ -1,12 +1,61 @@
 class Messager {
     constructor(game, size) {
+        this.N_image = 15;
         this.game = game;
-        this.image = new Image();
-        this.size = 1.5 * size;
-        this.image.src = "assets/images/icons/1.png";
+        this.size = size;
+        this.image = [];
+        for (let i = 1; i <= this.N_image; i++) {
+            this.image[i] = new Image();
+            this.image[i].src = "assets/images/icons/" + i + ".png";
+        }
+        this.index = 0;
+        this.x = 1;
+        this.y = 2;
+        this.active = false;
+        this.start = 0;
+        this.end = 150;
+    }
+
+    setXY(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    solve() {
+        if (this.active) {
+            this.start += 1;
+            if (this.start > this.end) {
+                this.active = false;
+                this.start = 0;
+            }
+        }
+    }
+
+    setActive(active) {
+        this.active = active;
+    }
+
+    randomActive() {
+        if (Math.random() < 0.0003) {
+            this.active = true;
+            this.index = Math.ceil(Math.random() * 100000) % this.N_image + 1;
+        } else {
+            this.active = false;
+        }
+        return this.active;
     }
 
     draw() {
-        this.game.context.drawImage(this.image, 0, 0, this.image.width, this.image.height, 0, 0, this.size, this.size);
+        if (this.active) {
+            this.solve();
+            let X_game = (game_W - 4 * this.size) / 2;
+            let Y_game = (game_H - 4 * this.size) / 2;
+
+            let width = 1.5 * this.size;
+            let height = 1.5 * this.size;
+            let x = X_game + (this.y + 1) * this.size - this.size / 2;
+            let y = Y_game + (this.x) * this.size - height + this.size / 2;
+            this.game.context.drawImage(this.image[this.index], x, y, width, height);
+        }
     }
 }

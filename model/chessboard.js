@@ -254,6 +254,17 @@ class ChessBoard {
     }
 
     drawMessager() {
+        if (!this.messager.active) {
+            for (let i = 0; i < N; i++)
+                for (let j = 0; j < N; j++) {
+                    if (this.matrix[i][j] == 1 && this.block[i][j] == 0) {
+                        if (!this.messager.active && this.messager.randomActive() == true) {
+                            this.messager.setXY(i, j);
+                        }
+                    }
+                }
+        }
+
         this.messager.draw();
     }
 
@@ -261,9 +272,9 @@ class ChessBoard {
         let size_2 = this.size / 1.25;
         this.game.context.drawImage(chessBoard_image, this.x, this.y, this.size * 4, this.size * 4);
         this.drawBug();
-        this.drawMessager();
         this.drawFlashlight();
         this.game.context.drawImage(chessBoard_bg_image, this.x - size_2 / 2, this.y - size_2 / 2, this.size * 4 + size_2, this.size * 4 + size_2);
+        this.drawMessager();
         this.drawText();
     }
 
