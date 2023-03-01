@@ -1,6 +1,7 @@
 class ImageLoader {
-    constructor() {
-        console.log("LoadImage");
+    constructor(game) {
+        this.game = game;
+        // console.log("LoadImage");
         this.initImage();
         this.isLoaded = false;
     }
@@ -63,7 +64,7 @@ class ImageLoader {
         this.loadedImages++;
         if (this.loadedImages === this.images.length) {
             this.isLoaded = true;
-            console.log("Loaded all images");
+            // console.log("Loaded all images");
         }
     }
 
@@ -74,6 +75,7 @@ class ImageLoader {
             img.src = pathImage;
             img.onload = () => {
                 this.checkAllImagesLoaded();
+                this.game.context.drawImage(img, 0, 0);
             };
         });
     }

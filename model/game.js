@@ -27,7 +27,7 @@ class game {
         this.context = this.canvas.getContext("2d");
         document.body.appendChild(this.canvas);
         Angle.toRadian();
-        this.loadImage = new ImageLoader()
+        this.loadImage = new ImageLoader(this);
         this.loadImage.load();
 
         this.render();
