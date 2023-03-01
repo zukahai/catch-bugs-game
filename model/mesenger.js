@@ -13,7 +13,8 @@ class Mesenger {
         this.y = 2;
         this.active = false;
         this.start = 0;
-        this.end = 150;
+        this.end = 200;
+        this.big = 0;
     }
 
     setXY(x, y) {
@@ -23,10 +24,17 @@ class Mesenger {
 
     solve() {
         if (this.active) {
-            this.start += 1;
-            if (this.start > this.end) {
-                this.active = false;
-                this.start = 0;
+            if (this.start < this.end) {
+                this.start += 1;
+                if (this.big < 1)
+                    this.big += 0.1;
+
+            } else {
+                this.big -= 0.1;
+                if (this.big <= 0) {
+                    this.active = false;
+                    this.start = 0;
+                }
             }
         }
     }
@@ -55,7 +63,7 @@ class Mesenger {
             let height = 1.5 * this.size;
             let x = X_game + (this.y + 1) * this.size - this.size / 2;
             let y = Y_game + (this.x) * this.size - height + this.size / 2;
-            this.game.context.drawImage(this.image[this.index], x, y, width, height);
+            this.game.context.drawImage(this.image[this.index], x, y + height * (1 - this.big), width * this.big, height * this.big);
         }
     }
 }

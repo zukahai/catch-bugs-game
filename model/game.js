@@ -39,7 +39,6 @@ class game {
 
     loop(timestamp) {
         this.fps.calculateFPS(timestamp);
-        console.log(this.fps.getFPS());
         if (!this.chessBoard.win) {
             this.update();
             this.render();
