@@ -108,7 +108,7 @@ class ImageLoader {
             img.src = pathImage;
             img.onload = () => {
                 this.checkAllImagesLoaded();
-                this.game.context.drawImage(img, 0, 0);
+                // this.game.context.drawImage(img, 0, 0);
             };
         });
 
