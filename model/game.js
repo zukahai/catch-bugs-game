@@ -31,7 +31,7 @@ class game {
         this.render();
         this.chessBoard = new ChessBoard(this);
         this.chessBoard.draw();
-        this.loop();
+        this.start();
         this.listenMouse();
         this.listenTouch();
     }
@@ -45,8 +45,12 @@ class game {
             this.chessBoard.redrictLevel();
         }
         this.draw();
-        setTimeout(() => this.loop(), 30);
+        requestAnimationFrame((timestamp) => this.loop(timestamp));
 
+    }
+
+    start() {
+        requestAnimationFrame((timestamp) => this.loop(timestamp));
     }
 
     update() {
