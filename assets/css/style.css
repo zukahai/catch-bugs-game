@@ -23,7 +23,8 @@ html,
 body {
     margin: 0;
     height: 100%;
-    overflow: hidden
+    overflow: hidden;
+    /* background-color: black; */
 }
 
 html {
@@ -33,4 +34,13 @@ html {
 
 html {
     overflow-y: hidden;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Chiều cao của màn hình */
+    flex-direction: column;
 }

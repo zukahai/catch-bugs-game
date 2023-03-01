@@ -54,11 +54,13 @@ class game {
     }
 
     start() {
-        if (!this.loadImage.isLoaded)
+        if (!this.loadImage.isLoaded) {
+            // Hide the loading message
+            document.getElementById('loading').style.display = 'none';
             requestAnimationFrame((timestamp) => this.loop(timestamp));
-        else {
+        } else {
             console.log(this.loadImage.loadedImages);
-            this.drawLoadImage();
+            // this.drawLoadImage();
             this.start();
         }
 
