@@ -27,6 +27,8 @@ class game {
         this.context = this.canvas.getContext("2d");
         document.body.appendChild(this.canvas);
         Angle.toRadian();
+        this.loadImage = new ImageLoader()
+        this.loadImage.load();
 
         this.render();
         this.chessBoard = new ChessBoard(this);
@@ -52,7 +54,14 @@ class game {
     }
 
     start() {
-        requestAnimationFrame((timestamp) => this.loop(timestamp));
+        if (!this.loadImage.isLoaded)
+            requestAnimationFrame((timestamp) => this.loop(timestamp));
+        else {
+            console.log(this.loadImage.loadedImages);
+            this.drawLoadImage();
+            this.start();
+        }
+
     }
 
     update() {
@@ -195,6 +204,12 @@ class game {
             let y = (game_H - size) / 2;
             this.context.drawImage(phone_img, x, y, size, size);
         }
+    }
+
+    drawLoadImage() {
+        this.clearScreen();
+        this.context.fillStyle = 'red';
+        this.context.fillRect(0, 0, game_W, game_H);
     }
 
     clearScreen() {
