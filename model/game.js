@@ -30,13 +30,16 @@ class game {
 
         this.render();
         this.chessBoard = new ChessBoard(this);
+        this.fps = new FPS();
         this.chessBoard.draw();
         this.start();
         this.listenMouse();
         this.listenTouch();
     }
 
-    loop() {
+    loop(timestamp) {
+        this.fps.calculateFPS(timestamp);
+        console.log(this.fps.getFPS());
         if (!this.chessBoard.win) {
             this.update();
             this.render();
@@ -175,7 +178,14 @@ class game {
     draw() {
         this.clearScreen();
         this.chessBoard.draw();
+        this.drawFPS();
         this.drawPhone();
+    }
+
+    drawFPS() {
+        this.context.font = (this.chessBoard.size / 7) + 'px MyCustomFont';
+        // this.context.fillStyle = "white";
+        this.context.fillText("FPS: " + this.fps.getFPS(), game_W * 0.92, this.chessBoard.size / 2);
     }
 
     drawPhone() {
