@@ -61,7 +61,7 @@ class game {
         } else {
             console.log(this.loadImage.loadedImages);
             // this.drawLoadImage();
-            this.start();
+            setTimeout(() => this.start(), 30);
         }
 
     }
