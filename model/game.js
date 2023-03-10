@@ -3,7 +3,7 @@ game_W = 0, game_H = 0;
 let bg = new Image();
 bg.src = "assets/images/bg.png";
 let logo = new Image();
-logo.src = "assets/images/logo.png";
+logo.src = "assets/images/logovku.png";
 let fl = new Image();
 let phone_img = new Image();
 phone_img.src = "assets/images/phone/phone4.png";
@@ -217,7 +217,7 @@ class game {
     clearScreen() {
         this.context.clearRect(0, 0, game_W, game_H);
         this.context.drawImage(bg, 0, 0, game_W, game_H);
-        this.context.drawImage(logo, game_H / 40, game_H / 40, game_H / 13, game_H / 13);
+        this.context.drawImage(logo, game_H / 40, game_H / 40, game_H / 5, game_H / 8);
         this.context.font = game_W / 20 + 'px Arial Black';
         this.context.fillStyle = "#FF00CC";
         this.context.textAlign = "center";
