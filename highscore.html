@@ -54,6 +54,11 @@
                 playerTable.deleteRow(-1);
             }
 
+            // Sắp xếp danh sách người chơi theo điểm số
+            players.sort(function(a, b) {
+                return b.score - a.score;
+            });
+
             for (var i = 0; i < players.length; i++) {
                 var row = playerTable.insertRow(-1);
                 var nameCell = row.insertCell(0);
