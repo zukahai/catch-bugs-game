@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách người chơi</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        th,
+        td {
+            text-align: left;
+            padding: 8px;
+            background-color: #4CAF50;
+        }
+        
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="playerTable">
+        <tr>
+            <th>Tên người chơi</th>
+            <th>Điểm số</th>
+            <th></th>
+        </tr>
+    </table>
+    <script>
+        window.onload = function() {
+            displayPlayers();
+        };
+
+        function displayPlayers() {
+            // Xóa tất cả các hàng trừ tiêu đề
+
+            var players = JSON.parse(localStorage.getItem("players")) || []; // lấy danh sách người chơi từ localStorage hoặc tạo mới nếu chưa có
+
+            var playerTable = document.getElementById("playerTable");
+
+            while (playerTable.rows.length > 1) {
+                playerTable.deleteRow(-1);
+            }
+
+            for (var i = 0; i < players.length; i++) {
+                var row = playerTable.insertRow(-1);
+                var nameCell = row.insertCell(0);
+                var scoreCell = row.insertCell(1);
+                var deleteCell = row.insertCell(2);
+
+                nameCell.innerHTML = players[i].name;
+                scoreCell.innerHTML = players[i].score;
+                deleteCell.innerHTML = '<button onclick="deletePlayer(' + i + ')">Xoá</button>';
+            }
+        }
+
+
+        function deletePlayer(index) {
+            var players = JSON.parse(localStorage.getItem("players")) || [];
+            players.splice(index, 1);
+            localStorage.setItem("players", JSON.stringify(players));
+            console.log(players);
+
+            displayPlayers();
+        }
+    </script>
+</body>
+
+</html>

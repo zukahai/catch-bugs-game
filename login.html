@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+</head>
+
+<body>
+    <form>
+        <label for="name">Tên người chơi:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="score">Điểm số:</label>
+        <input type="number" id="score" name="score"><br><br>
+
+        <input type="button" value="Lưu thông tin" onclick="savePlayer()">
+    </form>
+
+    <script>
+        function savePlayer() {
+            var name = document.getElementById("name").value;
+            var score = document.getElementById("score").value;
+
+            var players = JSON.parse(localStorage.getItem("players")) || []; // lấy danh sách người chơi từ localStorage hoặc tạo mới nếu chưa có
+
+            // Tìm kiếm người chơi trong danh sách
+            var existingPlayer = players.find(function(player) {
+                return player.name === name;
+            });
+
+            if (existingPlayer) {
+                // Nếu người chơi đã tồn tại, cập nhật điểm số của họ
+                existingPlayer.score = score;
+            } else {
+                // Nếu người chơi chưa tồn tại, thêm thông tin người chơi mới vào danh sách
+                players.push({
+                    name: name,
+                    score: score
+                });
+            }
+
+            // Lưu lại danh sách người chơi vào localStorage
+            localStorage.setItem("players", JSON.stringify(players));
+            console.log(players);
+        }
+    </script>
+</body>
+
+</html>
