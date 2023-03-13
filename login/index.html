@@ -12,7 +12,7 @@
     <!-- partial:index.partial.html -->
 
     <body data-new-gr-c-s-check-loaded="14.1079.0" data-gr-ext-installed="">
-        <form method="post" action="">
+        <form>
             <div class="svgContainer">
                 <div>
                     <svg class="mySVG" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
@@ -118,45 +118,47 @@
             </div>
 
             <div class="inputGroup inputGroup1 focusWithText">
-                <label for="loginEmail" id="loginEmailLabel">Email</label>
-                <input type="email" id="loginEmail" maxlength="254" class=" is-invalid " name="email" value="" required="">
-                <p class="helper helper1">email@domain.com</p>
+                <label for="loginEmail" id="loginEmailLabel">Tên của bạn</label>
+                <input type="text" id="loginEmail" maxlength="254" class=" is-invalid " name="email" value="" required="">
+                <p class="helper helper1">Phan Đức Hải</p>
             </div>
             <div class="inputGroup inputGroup1 focusWithText">
-                <label for="loginEmail" id="loginEmailLabel">Email</label>
-                <input type="email" id="loginEmail" maxlength="254" class=" is-invalid " name="email" value="" required="">
-                <p class="helper helper1">email@domain.com</p>
+                <label for="school" id="schoolLablel">Trường của bạn đang học</label>
+                <input type="text" id="school" maxlength="254" class=" is-invalid " name="school" value="" required="">
+                <p class="helper helper2">THPT ABC</p>
             </div>
-            <div class="inputGroup inputGroup1 focusWithText">
-                <label for="loginEmail" id="loginEmailLabel">Email</label>
-                <input type="email" id="loginEmail" maxlength="254" class=" is-invalid " name="email" value="" required="">
-                <p class="helper helper1">email@domain.com</p>
-            </div>
+
             <div class="inputGroup inputGroup2">
-                <label for="loginPassword" id="loginPasswordLabel">Password</label>
-                <input type="text" id="loginPassword" class="" name="password" required="">
+                <label for="phonenumber" id="phonenumberLabel">Số điện thoại</label>
+                <input type="text" id="phonenumber" class="" name="phonenumber" required="">
                 <label id="showPasswordToggle" for="showPasswordCheck">
+                    
             <input id="showPasswordCheck" type="checkbox">
-            
-        </label>
+            </label>
+            </div>
+
+
+            </label>
 
             </div>
-            <!-- <div class="alert error alert-message">
+            <div class="alert error alert-message">
                 <input type="checkbox" id="alert1">
                 <label class="close" title="close" for="alert1">
             <i class="icon-remove"></i>
         </label>
                 <p class="inner">
-                    <strong>Sorry!</strong> These credentials do not match our records.
+                    <strong>Lưu ý!</strong> Phần thưởng được phát qua SĐT. Cần đảm bảo SĐT của bạn la đúng
                 </p>
-            </div> -->
+            </div>
 
 
             <div class="inputGroup inputGroup3">
-                <button id="login">Log in</button>
+                <button type="button" id="login" value="Đăng nhập" onclick="savePlayer()">Đăng nhập</button>
             </div>
 
         </form>
+
+
 
         <script type="text/javascript">
             $(".alert-message").fadeTo(1500, 0.1).slideUp(500, function() {
@@ -167,13 +169,59 @@
 
 
         <div id="torrent-scanner-popup" style="display: none;"></div>
-    </body>
-    <!-- partial -->
-    <script src='https://urjadeveloper.com/backend/login/tweenMax.min.js'></script>
-    <script src='https://urjadeveloper.com/backend/login/morphsvg.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js'></script>
-    <script src="./script.js"></script>
+        <!-- partial -->
+        <script src='https://urjadeveloper.com/backend/login/tweenMax.min.js'></script>
+        <script src='https://urjadeveloper.com/backend/login/morphsvg.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js'></script>
+        <script src="./script.js"></script>
 
-</body>
+        <script type="text/javascript">
+            function savePlayer() {
+                var name = document.getElementById("loginEmail").value;
+                var school = document.getElementById("school").value;
+                var phonenumber = document.getElementById("phonenumber").value;
+
+                if (name == "" || school == "" || phonenumber == "")
+                    alert("Vui lòng nhập đầy đủ thông tin");
+
+                console.log(name, school, phonenumber);
+                var players = JSON.parse(localStorage.getItem("players")) || []; // lấy danh sách người chơi từ localStorage hoặc tạo mới nếu chưa có
+
+                // Tìm kiếm người chơi trong danh sách
+                var existingPlayer = players.find(function(player) {
+                    return player.phonenumber === phonenumber;
+                });
+
+                if (existingPlayer) {
+                    // Nếu người chơi đã tồn tại, cập nhật điểm số của họ
+                    // existingPlayer.score = score;
+                } else {
+                    // Nếu người chơi chưa tồn tại, thêm thông tin người chơi mới vào danh sách
+                    players.push({
+                        name: name,
+                        school: school,
+                        phonenumber: phonenumber,
+                        score: 1
+                    });
+                }
+
+
+
+                // Lưu lại danh sách người chơi vào localStorage
+                localStorage.setItem("players", JSON.stringify(players));
+
+                let playerCurrent = players.find(function(player) {
+                    return player.phonenumber === phonenumber;
+                });
+
+                // Lưu lại playerCurrent vào localStorage
+                localStorage.setItem("playerCurrent", JSON.stringify(playerCurrent));
+                console.log(playerCurrent);
+            }
+        </script>
+
+    </body>
+
+
 
 </html>

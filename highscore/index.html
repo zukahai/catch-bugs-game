@@ -30,6 +30,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Tên người chơi</th>
+                                    <th>Số điện thoại</th>
                                     <th>Điểm số</th>
                                     <th></th>
                                 </tr>
@@ -69,11 +70,13 @@
                 var row = playerTable.insertRow(-1);
                 var idCells = row.insertCell(0);
                 var nameCell = row.insertCell(1);
-                var scoreCell = row.insertCell(2);
-                var deleteCell = row.insertCell(3);
+                var phonenumber = row.insertCell(2);
+                var scoreCell = row.insertCell(3);
+                var deleteCell = row.insertCell(4);
 
                 idCells.innerHTML = i + 1;
                 nameCell.innerHTML = players[i].name;
+                phonenumber.innerHTML = players[i].phonenumber;
                 scoreCell.innerHTML = players[i].score;
                 deleteCell.innerHTML = '<button onclick="deletePlayer(' + i + ')">Xoá</button>';
             }

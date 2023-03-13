@@ -16,13 +16,17 @@ class ChessBoard {
         this.flashlights = [];
         this.size = game_H / 8;
         this.win = false;
-        this.level = Cookie.getLevel();
+        this.level = 1;
 
         this.x = (game_W - 4 * this.size) / 2;
         this.y = (game_H - 4 * this.size) / 2;
         this.redrict = false;
 
         this.randomChessboard();
+        this.player = LocalStorage.getCurrentPlayer();
+        if (this.player) {
+            this.level = this.player.score;
+        }
 
         this.levels = Level.getData();
         this.initMatrix();
@@ -94,7 +98,8 @@ class ChessBoard {
 
     newGame() {
         this.level++;
-        Cookie.setCookie("level", this.level, 30);
+        LocalStorage.updateScore();
+        LocalStorage.updatePlayers();
         this.initMatrix();
         for (let i = 0; i < this.flashlights.length; i++)
             this.flashlights[i].resetLacation();
