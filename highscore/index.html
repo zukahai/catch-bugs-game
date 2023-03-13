@@ -87,11 +87,15 @@
 
 
         function deletePlayer(index) {
-            var players = JSON.parse(localStorage.getItem("players")) || [];
-            players.splice(index, 1);
-            localStorage.setItem("players", JSON.stringify(players));
-            console.log(players);
-
+            // confim delete
+            var confirmDelete = confirm("Bạn có chắc chắn muốn xoá người chơi này không?");
+            if (confirmDelete) {
+                // xóa người chơi
+                var players = JSON.parse(localStorage.getItem("players")) || [];
+                players.splice(index, 1);
+                localStorage.setItem("players", JSON.stringify(players));
+                console.log(players);
+            }
             displayPlayers();
         }
     </script>
