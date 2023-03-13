@@ -1,12 +1,10 @@
 class Player {
     constructor() {
-        this.phonenumber = null;
-        this.score = 0;
-        this.name = "Guest";
         this.player = {
             phonenumber: null,
             score: 1,
-            name: "Guest"
+            name: "Guest",
+            isGuest: true
         }
         LocalStorage.setItem('playerCurrent', this.player);
     }
