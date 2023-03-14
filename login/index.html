@@ -181,8 +181,17 @@
                 var school = document.getElementById("school").value;
                 var phonenumber = document.getElementById("phonenumber").value;
 
-                if (name == "" || school == "" || phonenumber == "")
+                if (name == "" || school == "" || phonenumber == "") {
                     alert("Vui lòng nhập đầy đủ thông tin");
+                    return;
+                }
+
+                // check phone number use regex
+                var regex = /^[0-9]{10}$/;
+                if (!regex.test(phonenumber)) {
+                    alert("Số điện thoại không hợp lệ");
+                    return;
+                }
 
                 console.log(name, school, phonenumber);
                 var players = JSON.parse(localStorage.getItem("players")) || []; // lấy danh sách người chơi từ localStorage hoặc tạo mới nếu chưa có
