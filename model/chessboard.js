@@ -24,15 +24,13 @@ class ChessBoard {
 
         this.randomChessboard();
 
-        this.player = Player.getCurrentPlayer();
-        if (!this.player) {
-            this.player = new Player().getPlayer();
-        }
-        this.level = this.player.score;
+        let currentPlayer = Player.getCurrentPlayer();
+        this.player = new Player(currentPlayer);
+        this.level = this.player.getLevel();
         // console.log("Level " + this.level);
 
         this.levels = Level.getData();
-        this.buttonManager = new ButtonManager(this.game, this.size);
+        this.buttonManager = new ButtonManager(this.game, this.size, this.player);
         this.initMatrix();
         this.initBug();
         this.initmesenger();
@@ -294,10 +292,10 @@ class ChessBoard {
         this.game.context.textAlign = "center";
         this.game.context.fillText(" Level " + ((this.win) ? (Math.floor(this.level) + 1) : this.level), game_W / 2, this.size);
         this.game.context.font = this.size / 10 + 'px MyCustomFont';
-        this.game.context.fillText(" Name: " + this.player.name, game_W / 2, game_H - 1.25 * this.size);
-        if (this.player.isGuest === undefined) {
-            this.game.context.fillText(" School: " + this.player.school, game_W / 2, game_H - 1 * this.size);
-            this.game.context.fillText(" Phone number: " + this.player.phonenumber, game_W / 2, game_H - 0.75 * this.size);
+        this.game.context.fillText(" Name: " + this.player.getName(), game_W / 2, game_H - 1.25 * this.size);
+        if (this.player.isNotGuest()) {
+            this.game.context.fillText(" School: " + this.player.getSchool(), game_W / 2, game_H - 1 * this.size);
+            this.game.context.fillText(" Phone number: " + this.player.getPhonenumber(), game_W / 2, game_H - 0.75 * this.size);
         }
 
     }

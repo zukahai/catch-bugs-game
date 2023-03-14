@@ -75,7 +75,7 @@ class game {
             var x = evt.offsetX == undefined ? evt.layerX : evt.offsetX;
             var y = evt.offsetY == undefined ? evt.layerY : evt.offsetY;
             this.actionDown(x, y);
-
+            this.chessBoard.buttonManager.isClick(x, y);
         })
 
         document.addEventListener("mousemove", evt => {
@@ -84,6 +84,7 @@ class game {
             x_touch = x;
             y_touch = y;
             this.actionMove(x, y);
+
         })
 
         document.addEventListener("mouseup", evt => {
