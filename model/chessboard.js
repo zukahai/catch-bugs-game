@@ -30,7 +30,7 @@ class ChessBoard {
         // console.log("Level " + this.level);
 
         this.levels = Level.getData();
-        this.buttonManager = new ButtonManager(this.game, this.size, this.player);
+        this.initButtons();
         this.initMatrix();
         this.initBug();
         this.initmesenger();
@@ -67,6 +67,13 @@ class ChessBoard {
 
     initmesenger() {
         this.mesenger = new Mesenger(this.game, this.size);
+    }
+
+    initButtons() {
+        this.buttonManager = new ButtonManager(this.game, this.size, this.player);
+        this.tutorial = new Tutorial(this.game, this.buttonManager, this.size);
+        if (this.player.isNotGuest())
+            this.tutorial.setVisible(false);
     }
 
     getLevel(level) {
@@ -292,8 +299,9 @@ class ChessBoard {
         this.game.context.textAlign = "center";
         this.game.context.fillText(" Level " + ((this.win) ? (Math.floor(this.level) + 1) : this.level), game_W / 2, this.size);
         this.game.context.font = this.size / 10 + 'px MyCustomFont';
-        this.game.context.fillText(" Name: " + this.player.getName(), game_W / 2, game_H - 1.25 * this.size);
+
         if (this.player.isNotGuest()) {
+            this.game.context.fillText(" Name: " + this.player.getName(), game_W / 2, game_H - 1.25 * this.size);
             let phonenumber = this.player.getPhonenumber();
             let hidenphonenumber = phonenumber.substring(0, 4) + "***" + phonenumber.substring(7, phonenumber.length);
             this.game.context.fillText(" School: " + this.player.getSchool(), game_W / 2, game_H - 1 * this.size);
@@ -304,5 +312,6 @@ class ChessBoard {
 
     drawButtons() {
         this.buttonManager.draw();
+        this.tutorial.draw();
     }
 }
