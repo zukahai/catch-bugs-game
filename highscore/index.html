@@ -78,7 +78,9 @@
 
                 idCells.innerHTML = i + 1;
                 nameCell.innerHTML = players[i].name;
-                phonenumber.innerHTML = players[i].phonenumber;
+                let phonenumberValue = players[i].phonenumber;
+                let phonenumberHiden = phonenumberValue.substring(0, 4) + "***" + phonenumberValue.substring(7);
+                phonenumber.innerHTML = phonenumberHiden;
                 scoreCell.innerHTML = players[i].score;
                 schoolCell.innerHTML = players[i].school;
                 deleteCell.innerHTML = '<button onclick="deletePlayer(' + i + ')">Xoá</button>';

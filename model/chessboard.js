@@ -294,8 +294,10 @@ class ChessBoard {
         this.game.context.font = this.size / 10 + 'px MyCustomFont';
         this.game.context.fillText(" Name: " + this.player.getName(), game_W / 2, game_H - 1.25 * this.size);
         if (this.player.isNotGuest()) {
+            let phonenumber = this.player.getPhonenumber();
+            let hidenphonenumber = phonenumber.substring(0, 4) + "***" + phonenumber.substring(7, phonenumber.length);
             this.game.context.fillText(" School: " + this.player.getSchool(), game_W / 2, game_H - 1 * this.size);
-            this.game.context.fillText(" Phone number: " + this.player.getPhonenumber(), game_W / 2, game_H - 0.75 * this.size);
+            this.game.context.fillText(" Phone number: " + hidenphonenumber, game_W / 2, game_H - 0.75 * this.size);
         }
 
     }
