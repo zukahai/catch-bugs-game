@@ -29,9 +29,10 @@ class ChessBoard {
             this.player = new Player().getPlayer();
         }
         this.level = this.player.score;
-        console.log("Level " + this.level);
+        // console.log("Level " + this.level);
 
         this.levels = Level.getData();
+        this.buttonManager = new ButtonManager(this.game, this.size);
         this.initMatrix();
         this.initBug();
         this.initmesenger();
@@ -284,6 +285,7 @@ class ChessBoard {
         this.game.context.drawImage(chessBoard_bg_image, this.x - size_2 / 2, this.y - size_2 / 2, this.size * 4 + size_2, this.size * 4 + size_2);
         this.drawmesenger();
         this.drawText();
+        this.drawButtons();
     }
 
     drawText() {
@@ -298,5 +300,9 @@ class ChessBoard {
             this.game.context.fillText(" Phone number: " + this.player.phonenumber, game_W / 2, game_H - 0.75 * this.size);
         }
 
+    }
+
+    drawButtons() {
+        this.buttonManager.draw();
     }
 }

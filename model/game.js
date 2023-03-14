@@ -195,7 +195,7 @@ class game {
     drawFPS() {
         this.context.font = (this.chessBoard.size / 7) + 'px MyCustomFont';
         // this.context.fillStyle = "white";
-        this.context.fillText("FPS: " + this.fps.getFPS(), game_W * 0.92, this.chessBoard.size / 2);
+        this.context.fillText("FPS: " + this.fps.getFPS(), game_W * 0.8, this.chessBoard.size / 2);
     }
 
     drawPhone() {

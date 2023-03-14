@@ -14,7 +14,7 @@ class LocalStorage {
 
     static getCurrentPlayer() {
         const player = LocalStorage.getItem('playerCurrent');
-        console.log("player: ", player);
+        // console.log("player: ", player);
         return player;
     }
 
