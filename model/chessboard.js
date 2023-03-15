@@ -106,9 +106,15 @@ class ChessBoard {
     }
 
     newGame() {
-        this.level++;
-        LocalStorage.updateScore();
-        LocalStorage.updatePlayers();
+        this.level += 1;
+        // LocalStorage.updateScore();
+        // LocalStorage.updatePlayers();
+        let phoneNumber = this.player.getPhonenumber();
+        CallAPI.postPlayerScore(this.player.getName(), 'catch-bugs', this.player.getSchool(), this.player.getPhonenumber(), this.level);
+        CallAPI.findPlayerByPhoneNumberAndGameId(phoneNumber, 'catch-bugs').then((respone) => {
+            LocalStorage.setItem("playerCurrent", respone);
+            console.log(LocalStorage.getItem("playerCurrent"));
+        })
         this.initMatrix();
         for (let i = 0; i < this.flashlights.length; i++)
             this.flashlights[i].resetLacation();

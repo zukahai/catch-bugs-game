@@ -1,14 +1,16 @@
 class Player {
     constructor(currentPlayer) {
         this.player = {
-            phonenumber: null,
+            phone: null,
             score: 1,
-            name: "Guest",
+            namePlayer: "Guest",
             school: "",
             isGuest: true
         }
         if (currentPlayer) {
             this.player = currentPlayer;
+            if (this.player.score <= 0)
+                this.player.score = 1;
         }
         LocalStorage.setItem('playerCurrent', this.player);
     }
@@ -30,7 +32,7 @@ class Player {
     }
 
     getName() {
-        return this.player.name;
+        return this.player.namePlayer;
     }
 
     getSchool() {
@@ -38,7 +40,7 @@ class Player {
     }
 
     getPhonenumber() {
-        return this.player.phonenumber;
+        return this.player.phone;
     }
 
     static getCurrentPlayer() {

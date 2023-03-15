@@ -25,7 +25,7 @@ class ButtonManager {
             if (this.player.isNotGuest()) {
                 LocalStorage.removeItem("playerCurrent");
             }
-            window.location.href = "./login";
+            window.location.href = "./register/login.html";
         }
     }
 
