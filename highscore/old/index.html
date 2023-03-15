@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>High Score - Catch bugs game | VKU - HaiZuka</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section">Danh sách người chơi</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-wrap">
+                        <table class="table table-bordered table-dark table-hover" id="playerTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Tên người chơi</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Trường</th>
+                                    <th>Điểm số</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        window.onload = function() {
+            displayPlayers();
+        };
+
+        function displayPlayers() {
+            // Xóa tất cả các hàng trừ tiêu đề
+
+            var players = JSON.parse(localStorage.getItem("players")) || []; // lấy danh sách người chơi từ localStorage hoặc tạo mới nếu chưa có
+
+            var playerTable = document.getElementById("playerTable");
+
+            while (playerTable.rows.length > 1) {
+                playerTable.deleteRow(-1);
+            }
+
+            // Sắp xếp danh sách người chơi theo điểm số
+            players.sort(function(a, b) {
+                return b.score - a.score;
+            });
+
+            for (var i = 0; i < players.length; i++) {
+                var row = playerTable.insertRow(-1);
+                var idCells = row.insertCell(0);
+                var nameCell = row.insertCell(1);
+                var phonenumber = row.insertCell(2);
+                var schoolCell = row.insertCell(3);
+                var scoreCell = row.insertCell(4);
+                var deleteCell = row.insertCell(5);
+
+                idCells.innerHTML = i + 1;
+                nameCell.innerHTML = players[i].name;
+                let phonenumberValue = players[i].phonenumber;
+                let phonenumberHiden = phonenumberValue.substring(0, 4) + "***" + phonenumberValue.substring(7);
+                phonenumber.innerHTML = phonenumberHiden;
+                scoreCell.innerHTML = players[i].score;
+                schoolCell.innerHTML = players[i].school;
+                deleteCell.innerHTML = '<button onclick="deletePlayer(' + i + ')">Xoá</button>';
+            }
+        }
+
+
+        function deletePlayer(index) {
+            var players = JSON.parse(localStorage.getItem("players")) || [];
+            // confim delete
+            let phonenumberValue = players[index].phonenumber;
+            let phonenumberHiden = phonenumberValue.substring(0, 4) + "***" + phonenumberValue.substring(7);
+            let name = players[index].name;
+            var confirmDelete = confirm("Bạn có chắc chắn muốn xoá người chơi " + name + ", số điện thoại: " + phonenumberHiden + " không?");
+            if (confirmDelete) {
+                // xóa người chơi
+
+                players.splice(index, 1);
+                localStorage.setItem("players", JSON.stringify(players));
+                console.log(players);
+            }
+            displayPlayers();
+        }
+    </script>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
