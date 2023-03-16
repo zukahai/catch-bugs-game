@@ -1,5 +1,5 @@
 class CallAPI {
-    static urlAPI = 'http://103.176.110.169:3000/game-vku';
+    static urlAPI = 'https://54a1-103-176-110-169.ap.ngrok.io/game-vku';
     static nameGame = 'catch-bugs';
 
     static getAllHighScore() {
