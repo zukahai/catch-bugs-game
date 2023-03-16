@@ -187,29 +187,32 @@
                 //     console.log(LocalStorage.getItem("playerCurrent"));
                 //     window.location.href = "../";
                 // });
-
-                CallAPI.findPlayerByPhoneNumberAndGameId(phonenumber, 'catch-bugs').then((respone) => {
+                let nameGame = 'catch-bugs';
+                CallAPI.findPlayerByPhoneNumberAndGameId(phonenumber, nameGame).then((respone) => {
                     if (respone !== "") {
-                        CallAPI.setItem("playerCurrent", respone);
-                        console.log(CallAPI.getItem("playerCurrent"));
-                    }
-                });
-                CallAPI.findPlayerByPhoneNumber(phonenumber).then((respone) => {
-                    console.log(respone);
-                    if (respone.check == true) {
-                        console.log("Đã tồn tại người dùng");
-                        CallAPI.postPlayerScore(respone.data.namePlayer, 'catch-bugs', respone.data.school, phonenumber, 0);
-                        LocalStorage.setItem("playerCurrent", {
-                            "namePlayer": respone.data.namePlayer,
-                            "school": respone.data.school,
-                            "phone": phonenumber,
-                            "score": 1,
-                        });
+                        LocalStorage.setItem("playerCurrent", respone);
+                        console.log(LocalStorage.getItem("playerCurrent"));
                         window.location.href = "../";
                     } else {
-                        alert(respone.message);
+                        CallAPI.findPlayerByPhoneNumber(phonenumber).then((respone) => {
+                            console.log(respone);
+                            if (respone.check == true) {
+                                console.log("Đã tồn tại người dùng");
+                                CallAPI.postPlayerScore(respone.data.namePlayer, nameGame, respone.data.school, phonenumber, 0);
+                                LocalStorage.setItem("playerCurrent", {
+                                    "namePlayer": respone.data.namePlayer,
+                                    "school": respone.data.school,
+                                    "phone": phonenumber,
+                                    "score": 3,
+                                });
+                                // window.location.href = "../b";
+                            } else {
+                                alert(respone.message);
+                            }
+                        });
                     }
                 });
+
 
 
             }
