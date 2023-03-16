@@ -190,6 +190,12 @@
                     alert("Vui lòng nhập đầy đủ thông tin");
                     return;
                 }
+                // check phone number use regex
+                var reg = /^(84|0[3|5|7|8|9])+([0-9]{8})$/;
+                if (!reg.test(phonenumber)) {
+                    alert("Số điện thoại không hợp lệ");
+                    return;
+                }
                 CallAPI.findPlayerByPhoneNumberAndGameId(phonenumber, 'catch-bugs').then((respone) => {
                     if (respone === "")
                         CallAPI.postPlayerScore(name, 'catch-bugs', school, phonenumber, 1);

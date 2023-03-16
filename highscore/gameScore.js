@@ -1,5 +1,5 @@
 let nameGameRanking = "catch-bugs";
-let urlRanking = "http://103.176.110.169:3000/game-vku/ranking/" + nameGameRanking;
+let urlRanking = "https://54a1-103-176-110-169.ap.ngrok.io/game-vku/ranking/" + nameGameRanking;
 
 function getRanking() {
     if ($.fn.DataTable.isDataTable('#table_ranking')) {

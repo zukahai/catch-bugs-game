@@ -1,5 +1,5 @@
 // <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-let urlAPI = 'http://103.176.110.169:3000/game-vku';
+let urlAPI = 'http://103.176.110.169:3000/game-vku/game-vku';
 let namePlayer = 'Nam';
 let nameGame = 'catch-bugs';
 let score = 200;
