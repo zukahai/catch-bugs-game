@@ -1,0 +1,13 @@
+{
+    "folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "G:/api-vku-games"
+		}
+	],
+    "settings": {
+        "liveServer.settings.multiRootWorkspaceName": "catch-bugs"
+    }
+}

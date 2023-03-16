@@ -26,8 +26,8 @@ class ChessBoard {
 
         let currentPlayer = Player.getCurrentPlayer();
         this.player = new Player(currentPlayer);
+        this.updateLocalStorage();
         this.level = this.player.getLevel();
-        // console.log("Level " + this.level);
 
         this.levels = Level.getData();
         this.initButtons();
@@ -45,17 +45,6 @@ class ChessBoard {
             [0, 0, 1, 0]
         ];
 
-
-        // Level.getRandomLevel(function(levelData) {
-        //     console.log(levelData);
-        //     this.matrix = levelData.data
-        //     console.log(this.matrix);
-        // }).then(result => {
-
-        // })
-
-        // console.log(Level.randomLevel());
-        // this.matrix = this.randomLevel();
         this.matrix = this.getLevel(this.level);
         this.block = [
             [0, 0, 0, 0],
@@ -82,8 +71,6 @@ class ChessBoard {
         let rowMatrix = Math.floor(this.levels.length / group);
         let levelInIndex = this.levels[(level % rowMatrix) * group + Math.floor(level / group)];
         let level_data = levelInIndex.data;
-        // console.log("Level " + (level + 1));
-        // console.log(levelInIndex.result);
         for (let i = 0; i < level_data.length; i++)
             for (let j = 0; j < level_data.length; j++)
                 level_data[i][j] -= 1;
@@ -105,16 +92,17 @@ class ChessBoard {
         chessBoard_image.src = "assets/images/backgounds/" + index + ".png";
     }
 
-    newGame() {
-        this.level += 1;
-        // LocalStorage.updateScore();
-        // LocalStorage.updatePlayers();
+    updateLocalStorage() {
         let phoneNumber = this.player.getPhonenumber();
-        CallAPI.postPlayerScore(this.player.getName(), 'catch-bugs', this.player.getSchool(), this.player.getPhonenumber(), this.level);
         CallAPI.findPlayerByPhoneNumberAndGameId(phoneNumber, 'catch-bugs').then((respone) => {
             LocalStorage.setItem("playerCurrent", respone);
             console.log(LocalStorage.getItem("playerCurrent"));
         })
+    }
+
+    newGame() {
+        CallAPI.postPlayerScore(this.player.getName(), 'catch-bugs', this.player.getSchool(), this.player.getPhonenumber(), this.level);
+        this.updateLocalStorage();
         this.initMatrix();
         for (let i = 0; i < this.flashlights.length; i++)
             this.flashlights[i].resetLacation();

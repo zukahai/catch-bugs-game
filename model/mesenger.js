@@ -22,7 +22,7 @@ class Mesenger {
         this.y = y;
     }
 
-    solve() {
+    update() {
         if (this.active) {
             if (this.start < this.end) {
                 this.start += 1;
@@ -55,7 +55,7 @@ class Mesenger {
 
     draw() {
         if (this.active) {
-            this.solve();
+            this.update();
             let X_game = (game_W - 4 * this.size) / 2;
             let Y_game = (game_H - 4 * this.size) / 2;
 
