@@ -23,6 +23,22 @@ class CallAPI {
             });
     }
 
+    static async findPlayerByPhoneNumber(phoneNumber) {
+        const url = CallAPI.urlAPI + "/find-by-phone-and-name_game";
+        const postData = {
+            phone: phoneNumber
+        };
+        return await axios.post(url, postData)
+            .then(response => {
+                return response.data;
+            })
+            .catch(error => {
+                const errorMessage = error.response ? error.response.data.message : "Đã xảy ra lỗi khi gửi yêu cầu!";
+                console.error(errorMessage);
+                return Promise.reject(errorMessage);
+            });
+    }
+
 
     static postPlayerScore(namePlayer, nameGame, school, phone, score) {
         if (!namePlayer || !nameGame || !school || !phone) {
