@@ -101,8 +101,11 @@ class ChessBoard {
     }
 
     newGame() {
-        CallAPI.postPlayerScore(this.player.getName(), 'catch-bugs', this.player.getSchool(), this.player.getPhonenumber(), ++this.level);
-        this.updateLocalStorage();
+        CallAPI.postPlayerScore(this.player.getName(), 'catch-bugs', this.player.getSchool(), this.player.getPhonenumber(), ++this.level)
+            .then((respone) => {
+                this.updateLocalStorage();
+            })
+
         this.initMatrix();
         for (let i = 0; i < this.flashlights.length; i++)
             this.flashlights[i].resetLacation();
