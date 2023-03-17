@@ -13,7 +13,7 @@ function getRanking() {
 
         columns: [
             { "data": "id" },
-            { "data": "namePlayer" },
+            // { "data": "namePlayer" },
             { "data": "nameGame" },
             { "data": "score" },
             { "data": "phone" },
@@ -44,23 +44,23 @@ function getRanking() {
                 data: 'namePlayer',
                 title: 'Tên người chơi',
             },
+            // {
+            //     targets: 2,
+            //     data: 'nameGame',
+            //     title: 'Tên game',
+            // },
             {
                 targets: 2,
-                data: 'nameGame',
-                title: 'Tên game',
-            },
-            {
-                targets: 3,
                 data: 'score',
                 title: 'Điểm',
             },
             {
-                targets: 4,
+                targets: 3,
                 data: 'phone',
                 title: 'Số điện thoại',
             },
             {
-                targets: 5,
+                targets: 4,
                 data: 'school',
                 title: 'Trường',
             }
