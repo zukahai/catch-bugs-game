@@ -13,8 +13,8 @@ function getRanking() {
 
         columns: [
             { "data": "id" },
-            // { "data": "namePlayer" },
-            { "data": "nameGame" },
+             { "data": "namePlayer" },
+            //{ "data": "nameGame" },
             { "data": "score" },
             { "data": "phone" },
             { "data": "school" }
