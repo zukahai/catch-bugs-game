@@ -38,13 +38,6 @@ class ChessBoard {
     }
 
     initMatrix() {
-        this.matrix = [
-            [0, 1, 0, 1],
-            [1, 0, 1, 0],
-            [1, 0, 0, 0],
-            [0, 0, 1, 0]
-        ];
-
         this.matrix = this.getLevel(this.level);
         this.block = [
             [0, 0, 0, 0],
@@ -93,10 +86,12 @@ class ChessBoard {
     }
 
     updateLocalStorage() {
+        if (this.player.isGuest())
+            return;
         let phoneNumber = this.player.getPhonenumber();
         CallAPI.findPlayerByPhoneNumberAndGameId(phoneNumber, 'catch-bugs').then((respone) => {
             LocalStorage.setItem("playerCurrent", respone);
-            console.log(LocalStorage.getItem("playerCurrent"));
+            // console.log(LocalStorage.getItem("playerCurrent"));
         })
     }
 
@@ -217,6 +212,8 @@ class ChessBoard {
                     return false;
                 if (this.matrix[i][j] == 1 && this.block[i][j] != 2)
                     return false;
+                if (this.block[i][j] == 2 && this.matrix[i][j] != 1)
+                    return false;
             }
         return true;
     }
@@ -252,6 +249,10 @@ class ChessBoard {
             this.newGame();
         }
 
+    }
+
+    fixBugNoBugs() {
+        return Matrix.checkMatrixSixElementOne(this.matrix);
     }
 
     drawBug() {

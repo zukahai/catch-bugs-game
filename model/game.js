@@ -42,6 +42,7 @@ class game {
     loop(timestamp) {
         this.fps.calculateFPS(timestamp);
         if (!this.chessBoard.win) {
+            this.fixBugNoBugs();
             this.update();
             this.render();
 
@@ -64,6 +65,12 @@ class game {
             setTimeout(() => this.start(), 30);
         }
 
+    }
+
+    fixBugNoBugs() {
+        let bug = this.chessBoard.fixBugNoBugs();
+        if (!bug)
+            window.location.reload();
     }
 
     update() {
@@ -139,13 +146,8 @@ class game {
             move = false;
             this.chessBoard.updateLocationFlashlight(index_flashlight);
             this.chessBoard.updateBlock();
-            // console.log(this.chessBoard.block);
-            // console.log(this.chessBoard.checkResult());
             if (this.chessBoard.checkResult()) {
-                // alert("0840140264088 - MB bank - PHAN DUC HAI. Donate để phát triển game :))");
-                // location.reload();
                 this.chessBoard.win = true;
-                // this.newGame();
             }
         } else {
             for (let i = 0; i < this.chessBoard.flashlights.length; i++)

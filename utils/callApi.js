@@ -60,7 +60,6 @@ class CallAPI {
                 data: JSON.stringify(postData),
                 contentType: "application/json",
                 success: function(data) {
-                    console.log(data);
                     resolve(data); // trả về dữ liệu khi thành công
                 },
                 error: function(xhr, status, error) {
