@@ -188,15 +188,7 @@
                     alert("Vui lòng nhập đầy đủ thông tin");
                     return;
                 }
-                // CallAPI.findPlayerByPhoneNumberAndGameId(phonenumber, 'catch-bugs').then((respone) => {
-                //     if (respone === "")
-                //         window.location.href = "";
-                // });
-                // CallAPI.findPlayerByPhoneNumberAndGameId(phonenumber, 'catch-bugs').then((respone) => {
-                //     LocalStorage.setItem("playerCurrent", respone);
-                //     console.log(LocalStorage.getItem("playerCurrent"));
-                //     window.location.href = "../";
-                // });
+
                 let nameGame = 'catch-bugs';
                 CallAPI.findPlayerByPhoneNumberAndGameId(phonenumber, nameGame).then((respone) => {
                     if (respone !== "") {
@@ -215,7 +207,7 @@
                                     "phone": phonenumber,
                                     "score": 1,
                                 });
-                                // window.location.href = "../b";
+                                window.location.href = "../";
                             } else {
                                 alert(respone.message);
                             }
