@@ -1,6 +1,6 @@
 # <p align="center"> Catch Bug </p>
 <p align="center"> <img src="assets/images/demo/CatchBugs.png" alt="bg" /> </p>
-
+ 
 <hr>
 
 ## 1. Giới thiệu
